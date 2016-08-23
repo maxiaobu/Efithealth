@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -93,6 +95,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
     LinearLayout mLlRootContent;
     private BeanFoodDetail.BFoodmerBean mData;
     private int mFoodNum;
+    private String mMerid;
 
 
     @Override
@@ -112,7 +115,9 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
     private void initView() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mAppBar.addOnOffsetChangedListener(this);
+        mMerid = getIntent().getStringExtra("merid");
         mToolbar.setTitle("");
         mCtlName.setTitle("");
         CoordinatorLayout.LayoutParams linearParams = (CoordinatorLayout.LayoutParams) mAppBar.getLayoutParams();
@@ -125,7 +130,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
     }
 
     private void initData() {
-        RequestParams params = new RequestParams("merid", "M000024");
+        RequestParams params = new RequestParams("merid", mMerid);
         IRequest.post(this, Constant.URL_FOOD_DETAIL, params, new RequestListener() {
             @Override
             public void requestSuccess(String json) {
@@ -176,6 +181,17 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
                 // TODO: 2016/8/23 没写
                 break;
             case R.id.tv_now_order:
+                if (mData!=null){
+                    Intent intent = new Intent(this, OrderConfirmActivity.class);
+                    intent.putExtra("price",mData.getMerprice());
+                    intent.putExtra("num",Integer.valueOf((String) mTvFoodNum.getText()));
+                    intent.putExtra("merid",mMerid);
+                    intent.putExtra("phoneNum",mTvPhoneNum.getText());
+                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(mTvNowOrder,
+                            view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+                    ActivityCompat.startActivity(this,intent,
+                            compat.toBundle());
+                }
 
                 break;
             default:
@@ -199,6 +215,11 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
         } else {
             mCtlName.setTitle("");
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     /**

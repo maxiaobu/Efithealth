@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!--BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   -->
     <!--<style name="AppTheme" parent="android:Theme.Light" />-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,11 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent
+        </item>
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
     </style>
 
@@ -20,6 +22,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
     <style name="WrapWrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,9 +30,20 @@
 
 
     <!--toolsBar BEGIN-->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar"/>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <!--toolsBar END-->
+
+
+
+    <!--灰线1px-->
+    <style name="GrayLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#d4d4d4</item>
+    </style>
+
 
     <!--END    END    END    END    END    END    END    END    END    END    END    END    END    -->
 
@@ -305,8 +319,6 @@
         <item name="android:layout_height">46dp</item>
         <item name="android:background">@drawable/head</item>
     </style>
-
-
 
 
     <!--BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   BEGIN   -->

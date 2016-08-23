@@ -128,9 +128,19 @@ public class Constant {
 	/**
 	 * 订餐详情
 	 * 商品id
-	 *http://192.168.1.121:8080/efithealth/mgetFoodmers.do?merid=M000019
+	 * http://192.168.1.121:8080/efithealth/mgetFoodmers.do?merid=M000019
 	 */
 	public static final String URL_FOOD_DETAIL =URL_BASE+"mgetFoodmers.do";
+
+
+	/**
+	 * 订单确认
+	 * 商品id
+	 * http://192.168.1.121:8080/efithealth/mmeById.do?memid=M000439
+	 */
+	public static final String URL_USER_INFO_BY_ID =URL_BASE+"mmeById.do";
+
+
 
 
 	/*----END   END   END   END   END   END   END   END   END   END   END   ----*/

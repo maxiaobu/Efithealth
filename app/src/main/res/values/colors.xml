@@ -11,6 +11,11 @@
     <color name="colorTextHint">#dcdddd</color>
 
 
+    <color name="colorOrange">#F27241</color>
+
+
+
+
     <!--END    END    END    END    END    END    END    END    END    END    END    END    END    -->
     <color name="toast_bg">#fdeab8</color>
     <color name="toast_border">#e0d4b3</color>

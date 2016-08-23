@@ -210,8 +210,14 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
         });
         mAdapter.setOnItemClickListener(new LunchListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, String what) {
-                launch(view);
+            public void onItemClick(View view, String merid) {
+                Intent intent = new Intent(LunchListActivity.this,
+                        LunchDetailActivity.class);
+                intent.putExtra("merid",merid);
+                ActivityOptionsCompat compat =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(LunchListActivity.this,
+                                view, mActivity.getString(R.string.transition));
+                ActivityCompat.startActivity(LunchListActivity.this, intent, compat.toBundle());
             }
         });
 
@@ -555,6 +561,7 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
     }
 
     private void launch(View view) {
+
         ActivityOptionsCompat compat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                         view, getString(R.string.transition));

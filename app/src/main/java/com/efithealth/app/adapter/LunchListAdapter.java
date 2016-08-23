@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  */
 public class LunchListAdapter extends RecyclerView.Adapter {
     public interface OnImageItemClickListener {
-        public void onItemClick(View view,String url);
+        public void onItemClick(View view,String merid);
     }
     public interface OnItemClickListener {
         public void onItemClick(View view,String what);
@@ -77,7 +77,7 @@ public class LunchListAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 if (mListener!=null){
-                    mListener.onItemClick(viewHolder.mIvGoods,"");
+                    mListener.onItemClick(viewHolder.mIvGoods,mData.get(position).getMerid());
                 }
             }
         });
