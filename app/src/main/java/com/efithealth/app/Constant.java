@@ -130,7 +130,7 @@ public class Constant {
 	 * 商品id
 	 *http://192.168.1.121:8080/efithealth/mgetFoodmers.do?merid=M000019
 	 */
-	public static final String URL_LUNCH_DETAIL=URL_BASE+"mgetFoodmers.do";
+	public static final String URL_FOOD_DETAIL =URL_BASE+"mgetFoodmers.do";
 
 
 	/*----END   END   END   END   END   END   END   END   END   END   END   ----*/

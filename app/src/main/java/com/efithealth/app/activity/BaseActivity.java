@@ -36,7 +36,7 @@ public class BaseActivity extends FragmentActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 
-		// 处理小米系统的状态栏
+		/*// 处理小米系统的状态栏
 		Window window = getWindow();
 		Class<? extends Window> clazz = window.getClass();
 		int tranceFlag = 0;
@@ -61,7 +61,7 @@ public class BaseActivity extends FragmentActivity {
 			// extraFlagField.invoke(window, 0, darkModeFlag);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 

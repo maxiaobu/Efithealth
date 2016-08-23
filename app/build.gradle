@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.efithealth"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 17
         versionCode 1
         versionName "1.0"
@@ -49,6 +49,9 @@ dependencies {
     compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.code.gson:gson:2.7'
+    /*ui*/
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
+
     compile files('libs/baidumapapi_v3_5_0.jar')
     compile files('libs/bolts-android-1.2.0.jar')
     compile files('libs/core.jar')

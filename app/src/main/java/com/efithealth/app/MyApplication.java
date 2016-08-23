@@ -62,10 +62,11 @@ import android.content.DialogInterface.OnCancelListener;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.view.WindowManager;
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
 	public static Context applicationContext;
 	private static MyApplication instance;

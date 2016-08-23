@@ -141,6 +141,7 @@
         android:layout_height="match_parent"
         android:background="#e0000000"
         android:visibility="invisible"
-        android:transitionName="@string/transition"/>
+        android:transitionName="@string/transition"
+        />
     <include layout="@layout/common_nodata"/>
 </android.support.design.widget.CoordinatorLayout>

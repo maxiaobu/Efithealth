@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--灰色：#939393   线：#d4d4d4-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_root_content"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sz_88"
+        android:gravity="center"
+        android:paddingLeft="@dimen/sz_20"
+        android:paddingRight="@dimen/sz_20">
+
+        <TextView
+            android:id="@+id/tv_food_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="大幅度范德萨分"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/sz_20"/>
+
+        <TextView
+            android:id="@+id/tv_food_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="60元"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/sz_20"/>
+
+        <TextView
+            android:id="@+id/tv_food_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_food_name"
+            android:layout_marginTop="@dimen/sz_6"
+            tools:text="录得亏损解放螺丝钉棵解放了"
+            android:textColor="#55af33"
+            android:textSize="@dimen/sz_16"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d4d4d4"/>
+
+    <!--基本信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/sz_10"
+        android:paddingLeft="@dimen/sz_20"
+        android:paddingRight="@dimen/sz_20"
+        android:paddingTop="@dimen/sz_20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="基本信息:"
+            android:textColor="#939393"
+            android:textSize="@dimen/sz_14"/>
+
+        <TextView
+            android:id="@+id/tv_base_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sz_10"
+            tools:text="大恒科技粉红色的空间发挥阿斯蒂芬三大利空经济恢复了快速的环境啊疯了了的空间十分类似的空间啊疯了似的看见啊 "
+            android:textColor="#939393"
+            android:textSize="@dimen/sz_14"/>
+    </LinearLayout>
+
+    <!--材料-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/sz_20"
+        android:paddingLeft="@dimen/sz_20"
+        android:paddingRight="@dimen/sz_20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="材         料:"
+            android:textColor="#939393"
+            android:textSize="@dimen/sz_14"/>
+
+        <TextView
+            android:id="@+id/tv_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sz_10"
+            tools:text="大恒科技粉红色的空间发挥阿斯蒂芬三大利空经济恢复了快速的环境啊疯了了的空间十分类似的空间啊疯了似的看见啊 "
+            android:textColor="#939393"
+            android:textSize="@dimen/sz_14"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d4d4d4"/>
+
+    <!--电话-->
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sz_4"
+        app:mrl_rippleAlpha="0.1"
+        app:mrl_rippleColor="#585858"
+        app:mrl_rippleDelayClick="true"
+        app:mrl_rippleHover="true"
+        app:mrl_rippleOverlay="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_call_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sz_56"
+            >
+
+            <ImageView
+                android:id="@+id/iv_phone"
+                android:layout_width="@dimen/sz_26"
+                android:layout_height="@dimen/sz_26"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/sz_36"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_phone"/>
+
+            <TextView
+                android:id="@+id/tv_phone_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/sz_30"
+                android:layout_toRightOf="@+id/iv_phone"
+                tools:text="12345678910"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/sz_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/sz_20"
+                android:layout_height="@dimen/sz_20"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/sz_20"
+                android:src="@mipmap/ic_arrow_right"/>
+        </RelativeLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d4d4d4"/>
+
+    <!--配餐安排及详情-->
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sz_4"
+        app:mrl_rippleAlpha="0.1"
+        app:mrl_rippleColor="#585858"
+        app:mrl_rippleDelayClick="true"
+        app:mrl_rippleHover="true"
+        app:mrl_rippleOverlay="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_food_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sz_56"
+            >
+
+            <ImageView
+                android:id="@+id/iv_food_detail"
+                android:layout_width="@dimen/sz_26"
+                android:layout_height="@dimen/sz_26"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/sz_36"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_food_detail"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/sz_30"
+                android:layout_toRightOf="@+id/iv_food_detail"
+                android:text="配餐安排及详情"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/sz_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/sz_20"
+                android:layout_height="@dimen/sz_20"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/sz_20"
+                android:src="@mipmap/ic_arrow_right"/>
+        </RelativeLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d4d4d4"/>
+    <!--下单须知-->
+    <LinearLayout
+        android:id="@+id/rl_order_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/sz_20"
+        android:paddingBottom="@dimen/sz_10"
+        android:paddingLeft="@dimen/sz_20"
+        android:paddingRight="@dimen/sz_20">
+
+        <TextView
+            android:id="@+id/tv_base_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="下单须知:"
+            android:textColor="#F27241"
+            android:textSize="@dimen/sz_14"/>
+
+        <TextView
+            android:id="@+id/tv_content_notice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sz_10"
+            android:layout_marginRight="@dimen/sz_30"
+            android:layout_weight="1"
+            tools:text="大恒科技粉红色的空间发挥阿斯蒂芬三大利空经济恢复了快速的环境啊疯了了的空间十分类似的空间啊疯了似的看见啊 "
+            android:textColor="#F27241"
+            android:textSize="@dimen/sz_14"/>
+
+        <ImageView
+            android:layout_width="@dimen/sz_20"
+            android:layout_height="@dimen/sz_20"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_order_notice"/>
+    </LinearLayout>
+</LinearLayout>

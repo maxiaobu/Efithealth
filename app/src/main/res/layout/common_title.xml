@@ -12,7 +12,7 @@
         android:background="#ffffff"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:navigationIcon="@mipmap/ic_navigation_icon"
-        android:navigationIcon="@mipmap/ic_navigation_icon"
+        app:collapseIcon="@mipmap/ic_navigation_icon"
         >
 
         <TextView
