@@ -9,6 +9,7 @@
                                                 app:mrl_rippleDelayClick="true"
                                                 app:mrl_rippleHover="true"
                                                 app:mrl_rippleOverlay="true"
+                                                app:mrl_rippleDuration="300"
     >
     <LinearLayout
         android:layout_width="match_parent"

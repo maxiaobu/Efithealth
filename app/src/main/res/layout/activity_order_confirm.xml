@@ -36,16 +36,16 @@
                 <LinearLayout
                     android:id="@+id/ly_user_info"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/sz_100"
                     android:background="@drawable/bg_food_address"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/sz_30"
-                        android:layout_height="@dimen/sz_30"
-                        android:layout_marginLeft="@dimen/sz_10"
-                        android:src="@mipmap/ic_loacation"/>
+                        android:layout_width="@dimen/sz_22"
+                        android:layout_height="@dimen/sz_22"
+                        android:layout_marginLeft="@dimen/sz_14"
+                        android:src="@mipmap/ic_location"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -53,7 +53,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/sz_10"
+                        android:paddingLeft="@dimen/sz_6"
                         android:paddingRight="@dimen/sz_10">
 
                         <TextView
@@ -85,8 +85,8 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/sz_30"
-                        android:layout_height="@dimen/sz_30"
+                        android:layout_width="@dimen/sz_22"
+                        android:layout_height="@dimen/sz_22"
                         android:layout_marginRight="@dimen/sz_10"
                         android:src="@mipmap/ic_arrow_right"/>
 

@@ -23,11 +23,11 @@
 
     <item>
         <shape>
-            <solid android:color="#ACA8A7"/>
+            <solid android:color="#c5c5c5"/>
             <corners android:radius="3dip"/>
             <stroke
                 android:width="1dip"
-                android:color="#ACA8A7"/>
+                android:color="#c5c5c5"/>
         </shape>
     </item>
 

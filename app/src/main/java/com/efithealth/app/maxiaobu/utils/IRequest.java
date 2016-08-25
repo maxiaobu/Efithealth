@@ -2,6 +2,11 @@ package com.efithealth.app.maxiaobu.utils;
 
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.efithealth.app.fragment.LoadingFragment;
 
 /**
  *  2015/12/17 封装请求

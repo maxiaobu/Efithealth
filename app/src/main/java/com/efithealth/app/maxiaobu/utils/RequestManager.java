@@ -1,5 +1,6 @@
 package com.efithealth.app.maxiaobu.utils;
 
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.efithealth.app.MyApplication;
+import com.efithealth.app.fragment.LoadingFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,9 +153,13 @@ public class RequestManager {
     public static void post(String url, Object tag, RequestParams params,
                             String progressTitle, RequestListener listener) {
 
+        LoadingFragment dialog = new LoadingFragment();
+        dialog.show(((FragmentActivity) tag).getSupportFragmentManager(),
+                "Loading");
+        dialog.setMsg(progressTitle);
         ByteArrayRequest request = new ByteArrayRequest(Request.Method.POST,
-                url, params, responseListener(listener, true),
-                responseError(listener, true));
+                url, params, responseListener(listener, true, dialog),
+                responseError(listener, true, dialog));
         request.setRetryPolicy(new DefaultRetryPolicy(5000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -215,6 +221,48 @@ public class RequestManager {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+            }
+        };
+    }
+
+    /**
+     * 成功消息监听 返回对象 带进度条
+     *
+     * @param l
+     * @return
+     */
+    protected static Response.Listener<byte[]> responseListener(
+            final RequestListener l, final boolean flag, final LoadingFragment p) {
+        return new Response.Listener<byte[]>() {
+            @Override
+            public void onResponse(byte[] arg0) {
+                String data = null;
+                String data_request = null;
+                try {
+                    data = new String(arg0, "UTF-8");
+//                    Log.i("data", data);
+                    JSONObject a = new JSONObject(data);
+
+                    data_request = a.getString("msgContent");
+                    int code = Integer.parseInt(a.get("msgFlag").toString());
+                    Log.i(TAG, "onResponse: "+code);
+                    if (1==code){
+                        l.requestSuccess(data);
+                    }else {
+                        l.resultFail(data_request);
+                    }
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if (flag) {
+                    if (p.getShowsDialog()) {
+                        p.dismiss();
+                    }
                 }
             }
         };
@@ -291,6 +339,33 @@ public class RequestManager {
                     Toast.makeText(MyApplication.applicationContext, "请检查网络连接", Toast.LENGTH_LONG).show();
                 }
                 l.requestError(e);
+            }
+        };
+    }
+
+    /**
+     * String 返回错误监听 进度条
+     *
+     * @param l    String 接口
+     * @param flag true 带进度条 flase不带进度条
+     * @param p    进度条的对象
+     * @return
+     */
+    protected static Response.ErrorListener responseError(
+            final RequestListener l, final boolean flag, final LoadingFragment p) {
+        return new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                if (!NetworkUtils.isNetworkAvailable(MyApplication.getInstance())) {
+                    Toast.makeText(MyApplication.getInstance(), "请检查网络连接", Toast.LENGTH_LONG).show();
+                }
+                l.requestError(e);
+                if (flag) {
+                    if (p.getShowsDialog()) {
+                        p.dismiss();
+                    }
+                }
             }
         };
     }

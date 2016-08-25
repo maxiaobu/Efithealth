@@ -228,6 +228,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
     private void ringUp() {
         new MaterialDialog.Builder(this)
                 .title("呼叫")
+                .content(mTvPhoneNum.getText())
                 .positiveColor(getResources().getColor(R.color.colorTextPrimary))
                 .positiveText("确认")
 
@@ -243,7 +244,6 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
                 })
                 .negativeColor(getResources().getColor(R.color.colorTextPrimary))
                 .negativeText("取消")
-
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

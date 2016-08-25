@@ -627,7 +627,15 @@
             android:name=".app.activity.LunchDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".app.activity.OrderConfirmActivity"
+        <activity
+            android:name=".app.activity.OrderConfirmActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".app.activity.PayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".app.activity.OrderListActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.NoActionBar"
             />

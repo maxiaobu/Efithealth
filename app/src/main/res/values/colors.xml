@@ -6,9 +6,13 @@
     <color name="colorAccent">#EA379A</color>
 
 
-    <color name="colorTextPrimary">#272727</color>
-    <color name="colorTextSecondary">#555555</color>
-    <color name="colorTextHint">#dcdddd</color>
+    <color name="colorTextPrimary">#262626</color>
+    <color name="colorTextSecondary">#3f3f3f</color>
+    <color name="colorTextThird">#939393</color>
+    <color name="colorTextHint">#d4d4d4</color>
+
+
+
 
 
     <color name="colorOrange">#F27241</color>

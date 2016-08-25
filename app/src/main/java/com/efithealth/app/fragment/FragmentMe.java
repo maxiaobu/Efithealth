@@ -17,6 +17,7 @@ import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ExitConfimActivity;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.activity.MyInfo;
+import com.efithealth.app.activity.OrderListActivity;
 import com.efithealth.app.activity.QRCodeActivity;
 import com.efithealth.app.javabean.Member;
 import com.efithealth.app.javabean.MemberMolder;
@@ -325,7 +326,8 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
 		// 订单
 		case R.id.me_ll_order:
 			SharedPreferencesUtils.setParam(getActivity(), "me_change", "yes");
-			MainActivity.instance.setTabSelection(402);
+			startActivity(new Intent(getActivity(), OrderListActivity.class));
+//			MainActivity.instance.setTabSelection(402);
 			break;
 
 		// 预约

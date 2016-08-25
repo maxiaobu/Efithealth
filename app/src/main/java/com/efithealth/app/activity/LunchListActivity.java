@@ -234,8 +234,8 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
         IRequest.post(this, Constant.URL_LUNCH_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String json) {
-                if (mRlNoData.getVisibility()==View.VISIBLE)
-                    mRlNoData.setVisibility(View.GONE);
+                    if (mRlNoData.getVisibility()==View.VISIBLE)
+                        mRlNoData.setVisibility(View.GONE);
                 BeanGoodsList object = JsonUtils.object(json, BeanGoodsList.class);
                 if (dataType == 0) {//刷新
                     mData.clear();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.efithealth.R;
@@ -19,6 +20,10 @@ import com.efithealth.app.maxiaobu.utils.IRequest;
 import com.efithealth.app.maxiaobu.utils.JsonUtils;
 import com.efithealth.app.maxiaobu.utils.RequestListener;
 import com.efithealth.app.maxiaobu.utils.RequestParams;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -91,7 +96,7 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
     private void initData() {
         //http://192.168.1.121:8080/efithealth/mmeById.do?memid=M000439 用户信息
         RequestParams para = new RequestParams("memid", MyApplication.getInstance().getMemid());
-        IRequest.post(mActivity, Constant.URL_USER_INFO_BY_ID, para, new RequestListener() {
+        IRequest.post(mActivity, Constant.URL_USER_INFO_BY_ID, para,"", new RequestListener() {
             @Override
             public void requestSuccess(String json) {
                 BeanUserInfoById object = JsonUtils.object(json, BeanUserInfoById.class);
@@ -114,7 +119,7 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
 
     }
 
-    @OnClick({R.id.iv_reduce, R.id.iv_add, R.id.tv_now_order,R.id.ly_user_info})
+    @OnClick({R.id.iv_reduce, R.id.iv_add, R.id.tv_now_order, R.id.ly_user_info})
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -137,11 +142,50 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
             case R.id.ly_user_info:
 //                Intent intent = new Intent();
 //                intent.setClass(OrderConfirmActivity.this, RevampAddress.class);
-                Log.d("OrderConfirmActivity", "dslfnhlkdjf");
+//                Log.d("OrderConfirmActivity", "dslfnhlkdjf");
                 startActivityForResult(new Intent(OrderConfirmActivity.this, RevampAddress.class), 11);
 
                 break;
+            case R.id.tv_now_order:
 
+                RequestParams requestParams = new RequestParams();
+                requestParams.put("memid", MyApplication.getInstance().getMemid());
+                requestParams.put("mernum", String.valueOf(mNum));
+                requestParams.put("ordamt", String.valueOf(mTotlePrice));
+                requestParams.put("isShopcart", "0");
+                String s = "{foodmers:[{merid:" + mMerid + ",buynum:" + mNum + "}]}";
+                requestParams.put("foodmers", s);
+
+                IRequest.post(this, Constant.URL_SAVE_ORDER_INDO, requestParams,"", new RequestListener() {
+                    @Override
+                    public void requestSuccess(String json) {
+                        try {
+                            JSONObject myJsonObject = new JSONObject(json);
+                            String msgContent = (String) myJsonObject.get("msgContent");
+                            if ("订单确认成功!".equals(msgContent)){
+                                startActivity(new Intent(OrderConfirmActivity.this, PayActivity.class));
+                            }else {
+                                Toast.makeText(mActivity, "订单确认失败!", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(mActivity, "接口变了!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void requestError(VolleyError e) {
+                        Toast.makeText(mActivity, "订单确认失败!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void resultFail(String json) {
+                        Toast.makeText(mActivity, "接口变了!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                break;
             default:
                 break;
         }
@@ -156,7 +200,7 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == 11) {
-initData();
+            initData();
         }
     }
 }

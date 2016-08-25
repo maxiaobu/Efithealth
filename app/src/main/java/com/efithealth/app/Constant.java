@@ -140,8 +140,36 @@ public class Constant {
 	 */
 	public static final String URL_USER_INFO_BY_ID =URL_BASE+"mmeById.do";
 
+	/**
+	 * 保存订单信息
+	 * memid（会员编号）
+	 * mernum （商品数量）
+	 * ordamt （订单金额）
+	 * isShopcart（是否加入过购物车）0、1
+	 * 商品id foodmers ="{ 'foodmers': [{ 'merid': 'xxxx', 'buynum':'1'},{'merid': 'yyyy', 'buynum':'2'},{'merid': 'zzz', 'buynum':'5'}]}"
+	 * http://192.168.1.121:8080/efithealth/mfordersave.do?memid=M000439&mernum=2&ordamt=1000&isShopcart=0&foodmers={foodmers:[{merid:M000019,buynum:2}]}
+	 * ，｛｝
+	 */
+	public static final String URL_SAVE_ORDER_INDO =URL_BASE+"mfordersave.do";
 
+    /**
+     * 配餐订单列表
+     * pageIndex: pageIndex++, //当前页码
+     * listtype: "forderlist",//写死，就写他，区分出订餐订单
+     * memid: getMemid()//用户id
+     * http://192.168.1.121:8080/efithealth/morderlist.do?memid=M000455&listtype=forderlist&pageIndex=1
+     */
+    public static final String FOOD_ORDER_LIST_URL =URL_BASE+"morderlist.do";
 
+	/**
+	 * 按摩订单列表
+	 * pageIndex: pageIndex++, //当前页码
+	 * listtype: "morderlist",//写死，就写他，区分出按摩订单
+	 * memid: getMemid()//用户id
+	 *http://192.168.1.121:8080/efithealth/mmassageorderList.do?memid=M000439&listtype=morderlist&pageIndex=1
+	 */
+	public static final String MSJ_ORDER_LIST_URL = URL_BASE
+			+ "mmassageorderList.do";//
 
 	/*----END   END   END   END   END   END   END   END   END   END   END   ----*/
 }
