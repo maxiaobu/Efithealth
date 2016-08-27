@@ -31,11 +31,9 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.efithealth.applib.controller.HXSDKHelper;
-import com.efithealth.applib.model.HXSDKModel;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.DemoHXSDKHelper;
 import com.efithealth.app.DemoHXSDKModel;
 import com.efithealth.R;

@@ -27,9 +27,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMContactManager;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.DemoHXSDKHelper;
 import com.efithealth.R;
 
@@ -92,7 +92,7 @@ public class AddContactActivity extends BaseActivity{
 	 * @param view
 	 */
 	public void addContact(View view){
-		if(MyApplication.getInstance().getUserName().equals(nameText.getText().toString())){
+		if(App.getInstance().getUserName().equals(nameText.getText().toString())){
 			String str = getString(R.string.not_add_myself);
 			startActivity(new Intent(this, AlertDialog.class).putExtra("msg", str));
 			return;

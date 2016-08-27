@@ -42,6 +42,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
         <item name="android:background">#d4d4d4</item>
+        <item name="android:layout_marginTop">@dimen/sz_2</item>
+        <item name="android:layout_marginBottom">@dimen/sz_2</item>
     </style>
 
     <!-- 加载数据时的等待对话框 -->

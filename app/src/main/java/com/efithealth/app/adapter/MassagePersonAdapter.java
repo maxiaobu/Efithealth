@@ -1,19 +1,12 @@
 package com.efithealth.app.adapter;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.crypto.spec.IvParameterSpec;
-
-import com.baidu.location.LLSInterface;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.fragment.FragmentMassageOrder;
 import com.efithealth.app.fragment.FragmentMassagePersonList;
 import com.efithealth.app.javabean.Masseurlist;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -83,7 +76,7 @@ public class MassagePersonAdapter extends BaseAdapter {
 		final Masseurlist masseur = list.get(position);
 		ImageLoader.getInstance().displayImage(Constant.URL_RESOURCE+masseur.getImgsfile(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		if (masseur.getGender().equals("1")) {
 			holder.iv_sex.setImageResource(R.drawable.ee_24);
 		} else {

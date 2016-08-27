@@ -3,8 +3,8 @@ package com.efithealth.app.adapter;
 import java.util.List;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.javabean.CoachList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -79,7 +79,7 @@ public class CoachListAdapter extends BaseAdapter {
 		}
 		ImageLoader.getInstance().displayImage(coachList.getImgsfilename(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		return convertView;
 	}
 

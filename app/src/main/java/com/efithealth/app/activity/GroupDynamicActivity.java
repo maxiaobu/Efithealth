@@ -15,13 +15,10 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.adapter.GroupDynamicAdapter;
-import com.efithealth.app.adapter.HotDynamicAdapter;
-import com.efithealth.app.javabean.HotDynamic;
-import com.efithealth.app.javabean.HotDynamicModel;
 import com.efithealth.app.javabean.MBDynamicList;
 import com.efithealth.app.javabean.MBDynamicModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.view.refreshlistview.WaterDropListView;
@@ -123,7 +120,7 @@ public class GroupDynamicActivity extends BaseActivity implements
 				SharedPreferencesUtils.setParam(GroupDynamicActivity.this,
 						"dynId", listAdapter.get(position).getDynid());
 				String page = "file:///android_asset/dynReview.html?memid="
-						+ MyApplication.getInstance().getMemid() + "&dynid="
+						+ App.getInstance().getMemid() + "&dynid="
 						+ listAdapter.get(position).getDynid() + "&from=hot";
 				Intent intent = new Intent(GroupDynamicActivity.this,
 						FindActivity.class);
@@ -223,7 +220,7 @@ public class GroupDynamicActivity extends BaseActivity implements
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("pageIndex", pageIndex + "");
 				map.put("groupid", getIntent().getStringExtra("groupid"));
 				if (type == 4) {

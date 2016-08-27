@@ -23,7 +23,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.IBinder;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.provider.MediaStore;
@@ -39,7 +38,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -57,16 +55,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.Photo.ChoosePhotoActivity2;
 import com.efithealth.app.activity.BaseActivity;
 import com.efithealth.app.activity.FragmentClassManage;
-import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.entity.ClubList;
 import com.efithealth.app.entity.MpCourseSave;
-import com.efithealth.app.fragment.FragmentIssueCourse.HeadImgClickListener;
-import com.efithealth.app.fragment.FragmentIssueCourse.PopupWindows;
-import com.efithealth.app.fragment.FragmentIssueCourse.ViewHolder;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.StringUtil;
@@ -144,15 +138,15 @@ public class IssueCourseActivity extends BaseActivity {
 				if (!checkInput())
 					return;
 				// showProgressDialog();
-				if (MyApplication.getInstance().editCourseFlag) {// 从编程过来的,走下面的请求
+				if (App.getInstance().editCourseFlag) {// 从编程过来的,走下面的请求
 					Log.d("debug", "编程课程");
 
-					int i = MyApplication.getInstance().coursePosition;// 课程位置
+					int i = App.getInstance().coursePosition;// 课程位置
 																		// 上线课程在listview里的位置
 
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("pcourseid",
-							MyApplication.getInstance().mCourseList
+							App.getInstance().mCourseList
 									.getCourseList().get(i).getPcourseid());// 课程编号
 					map.put("pcoursename", et_course_name.getText().toString());// 名称修改
 
@@ -185,7 +179,7 @@ public class IssueCourseActivity extends BaseActivity {
 							if ("1".equals(mpCourseSave.getMsgFlag())) {
 
 								btn_issue_commit_flag = true;
-								MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+								App.getInstance().newCourseFlag = true;// 改变发布课程标志
 								ToastCommom.getInstance().ToastShow(
 										IssueCourseActivity.this,
 										mpCourseSave.getMsgContent());
@@ -250,7 +244,7 @@ public class IssueCourseActivity extends BaseActivity {
 							if ("1".equals(mpCourseSave.getMsgFlag())) {
 
 								btn_issue_commit_flag = true;
-								MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+								App.getInstance().newCourseFlag = true;// 改变发布课程标志
 								ToastCommom.getInstance().ToastShow(
 										IssueCourseActivity.this,
 										mpCourseSave.getMsgContent());
@@ -286,7 +280,7 @@ public class IssueCourseActivity extends BaseActivity {
 						Bimp.act_bool = true;
 						FileUtils.deleteDir();
 						if (btn_issue_commit_flag) {
-							MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+							App.getInstance().newCourseFlag = true;// 改变发布课程标志
 						}
 						finish();
 					}
@@ -306,33 +300,33 @@ public class IssueCourseActivity extends BaseActivity {
 
 		request();// 获得教练绑定的俱乐部信息
 
-		if (MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (App.getInstance().editCourseFlag) {// 编程课程
 			et_club.setVisibility(View.GONE);
 			rl_club.setVisibility(View.GONE);
 			tv_title_centre.setText("课程编辑");
 
-			int i = MyApplication.getInstance().coursePosition;// 课程位置
+			int i = App.getInstance().coursePosition;// 课程位置
 																// 上线课程在listview里的位置
-			path = MyApplication.getInstance().mCourseList.getCourseList().get(i).getImgpfile();
+			path = App.getInstance().mCourseList.getCourseList().get(i).getImgpfile();
 			if (!path.contains("http://")) {
 				Bitmap bm = BitmapFactory.decodeFile(path);
 				iv_course_picture.setImageBitmap(bm);
 			}else{
 				ImageLoader.getInstance().displayImage(
-						MyApplication.getInstance().mCourseList.getCourseList()
+						App.getInstance().mCourseList.getCourseList()
 						.get(i).getImgpfile(), iv_course_picture,
-						MyApplication.getInstance().initPicDisImgOption());
+						App.getInstance().initPicDisImgOption());
 			}
 
-			et_course_name.setText(MyApplication.getInstance().mCourseList
+			et_course_name.setText(App.getInstance().mCourseList
 					.getCourseList().get(i).getPcoursename());
-			et_course_number.setText(MyApplication.getInstance().mCourseList
+			et_course_number.setText(App.getInstance().mCourseList
 					.getCourseList().get(i).getPcoursetimes());
-			et_course_time.setText(MyApplication.getInstance().mCourseList
+			et_course_time.setText(App.getInstance().mCourseList
 					.getCourseList().get(i).getPcoursedays());
-			et_price.setText(MyApplication.getInstance().mCourseList
+			et_price.setText(App.getInstance().mCourseList
 					.getCourseList().get(i).getPcourseprice());
-			et_notice.setText(MyApplication.getInstance().mCourseList
+			et_notice.setText(App.getInstance().mCourseList
 					.getCourseList().get(i).getResinform());
 
 		} else {
@@ -694,7 +688,7 @@ public class IssueCourseActivity extends BaseActivity {
 
 	private Boolean checkInput() {
 
-		if (!MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (!App.getInstance().editCourseFlag) {// 编程课程
 			if (StringUtil.isEmpty(path)) {
 				ToastCommom.getInstance().ToastShow(IssueCourseActivity.this,
 						"课程图片不能为空");
@@ -718,7 +712,7 @@ public class IssueCourseActivity extends BaseActivity {
 			return false;
 		}
 
-		if (!MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (!App.getInstance().editCourseFlag) {// 编程课程
 
 			if (StringUtil.isEmpty(et_club.getText().toString())) {
 				ToastCommom.getInstance().ToastShow(IssueCourseActivity.this,

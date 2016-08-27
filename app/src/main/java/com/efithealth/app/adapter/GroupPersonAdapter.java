@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,11 +14,9 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.javabean.GroupPerson;
 import com.efithealth.app.javabean.Memberlist;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
-import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -98,7 +94,7 @@ public class GroupPersonAdapter extends BaseAdapter {
 		}
 		ImageLoader.getInstance().displayImage(Constant.URL_RESOURCE+memberlist.getImgsfile(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		holder.tv_name.setText(memberlist.getNickname());
 		holder.tv_details.setText(memberlist.getSignature());
 
@@ -154,7 +150,7 @@ public class GroupPersonAdapter extends BaseAdapter {
 				map.put("groupid", groupid);
 				map.put("tarid", list.get(position).getMemid());
 				if (flag.equals("2")) {
-					map.put("memid",MyApplication.getInstance().getMemid() );
+					map.put("memid", App.getInstance().getMemid() );
 				}
 				return map;
 			}

@@ -15,8 +15,8 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
@@ -147,7 +147,7 @@ public class FragmentPayAmount extends BaseFragment implements OnClickListener {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				return map;
 			}
 		};
@@ -235,7 +235,7 @@ public class FragmentPayAmount extends BaseFragment implements OnClickListener {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				String str=orderId.substring(0, 2);
 				if (str.equals("MO")) {
 					map.put("orderid", orderId);

@@ -38,7 +38,7 @@
     <uses-permission android:name="com.efithealth.app.permission.C2D_MESSAGE"/>
 
     <application
-        android:name=".app.MyApplication"
+        android:name=".app.maxiaobu.base.App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/logo_fithealth"
@@ -635,10 +635,20 @@
             android:name=".app.activity.PayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".app.activity.OrderListActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.NoActionBar"
-            />
+        <activity
+            android:name=".app.activity.OrderListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".app.activity.ModifyOrderAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".app.activity.FoodOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".app.activity.DispatchDetailActivity">
+        </activity>
     </application>
 
 </manifest>

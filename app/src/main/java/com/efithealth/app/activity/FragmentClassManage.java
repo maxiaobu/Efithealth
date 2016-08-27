@@ -17,11 +17,11 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.fragment.BaseFragment;
 import com.efithealth.app.fragment.FragmentHistoryClass;
 import com.efithealth.app.fragment.FragmentOnLineClass;
 import com.efithealth.app.fragment.IssueCourseActivity;
+import com.efithealth.app.maxiaobu.base.App;
 
 import image.Bimp;
 import image.FileUtils;
@@ -104,8 +104,8 @@ public class FragmentClassManage extends BaseFragment implements
 
 					@Override
 					public void onClick(View arg0) {
-						MyApplication.getInstance().upDateIssueCourseFragment = true;// 更新发布课程fragment
-						MyApplication.getInstance().editCourseFlag = false;// 发布课程
+						App.getInstance().upDateIssueCourseFragment = true;// 更新发布课程fragment
+						App.getInstance().editCourseFlag = false;// 发布课程
 						Intent intent = new Intent(getActivity(),
 								IssueCourseActivity.class);
 						startActivity(intent);
@@ -156,10 +156,10 @@ public class FragmentClassManage extends BaseFragment implements
 				fragmentList);
 		mPager.setAdapter(adapter);
 
-		if (MyApplication.getInstance().fragmentHistoryFlag) {
+		if (App.getInstance().fragmentHistoryFlag) {
 			mPager.setCurrentItem(1);// ���õ�ǰ��ʾ��ǩҳΪ��һҳ
 			rb_history_class.setChecked(true);
-			MyApplication.getInstance().fragmentHistoryFlag = false;
+			App.getInstance().fragmentHistoryFlag = false;
 		} else {
 			mPager.setCurrentItem(0);// ���õ�ǰ��ʾ��ǩҳΪ��һҳ
 		}

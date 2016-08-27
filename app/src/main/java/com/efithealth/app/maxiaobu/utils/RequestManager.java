@@ -10,8 +10,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.fragment.LoadingFragment;
+import com.efithealth.app.maxiaobu.base.App;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 public class RequestManager {
     public static final String TAG="RequestManager";
 
-    public static RequestQueue mRequestQueue = Volley.newRequestQueue(MyApplication.applicationContext);
+    public static RequestQueue mRequestQueue = Volley.newRequestQueue(App.applicationContext);
 
     private RequestManager() {
 
@@ -45,7 +45,7 @@ public class RequestManager {
                     responseError(listener, false));
             addRequest(request, tag);
         } catch (Exception e) {
-            Toast.makeText(MyApplication.applicationContext, e.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(App.applicationContext, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -213,7 +213,7 @@ public class RequestManager {
                     data_request = a.getString("data");
                     //request error
                     if (Integer.parseInt(a.get("code").toString()) == 400) {
-                        Toast.makeText(MyApplication.applicationContext, a.get("msg").toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(App.applicationContext, a.get("msg").toString(), Toast.LENGTH_SHORT).show();
                     } else {
                         l.requestSuccess(JsonUtils.object(data_request, classOfT));
                     }
@@ -281,8 +281,8 @@ public class RequestManager {
 
             @Override
             public void onErrorResponse(VolleyError e) {
-                if (NetworkUtils.isAvailable(MyApplication.applicationContext)) {
-                    Toast.makeText(MyApplication.applicationContext, "请检查网络连接", Toast.LENGTH_LONG);
+                if (NetworkUtils.isAvailable(App.applicationContext)) {
+                    Toast.makeText(App.applicationContext, "请检查网络连接", Toast.LENGTH_LONG);
                 }
                 l.requestError(e);
             }
@@ -335,8 +335,8 @@ public class RequestManager {
 
             @Override
             public void onErrorResponse(VolleyError e) {
-                if (!NetworkUtils.isAvailable(MyApplication.applicationContext)) {
-                    Toast.makeText(MyApplication.applicationContext, "请检查网络连接", Toast.LENGTH_LONG).show();
+                if (!NetworkUtils.isAvailable(App.applicationContext)) {
+                    Toast.makeText(App.applicationContext, "请检查网络连接", Toast.LENGTH_LONG).show();
                 }
                 l.requestError(e);
             }
@@ -357,8 +357,8 @@ public class RequestManager {
 
             @Override
             public void onErrorResponse(VolleyError e) {
-                if (!NetworkUtils.isNetworkAvailable(MyApplication.getInstance())) {
-                    Toast.makeText(MyApplication.getInstance(), "请检查网络连接", Toast.LENGTH_LONG).show();
+                if (!NetworkUtils.isNetworkAvailable(App.getInstance())) {
+                    Toast.makeText(App.getInstance(), "请检查网络连接", Toast.LENGTH_LONG).show();
                 }
                 l.requestError(e);
                 if (flag) {
@@ -397,23 +397,23 @@ public class RequestManager {
         //如果进度条是显示状态，则关闭进度条
 
         if (error == null) {
-            Toast.makeText(MyApplication.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
+            Toast.makeText(App.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
             return true;
         } else if (error.networkResponse == null) {
-            Toast.makeText(MyApplication.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
+            Toast.makeText(App.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
             return true;
         } else if (error.networkResponse.statusCode == 500) {
-            Toast.makeText(MyApplication.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
+            Toast.makeText(App.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
             return true;
         } else if (error.networkResponse.statusCode == 404) {
             return true;
         } else if (error.networkResponse.statusCode == 401) {
-            Toast.makeText(MyApplication.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
+            Toast.makeText(App.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
             return true;
         } else if (error.networkResponse.statusCode == 406) {
             return true;
         } else if (error.networkResponse.statusCode == 500) {
-            Toast.makeText(MyApplication.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
+            Toast.makeText(App.applicationContext, "亲,您的网络不给力", Toast.LENGTH_LONG).show();
             return true;
         }
         return false;

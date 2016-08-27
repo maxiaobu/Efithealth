@@ -15,13 +15,13 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FindActivity;
 import com.efithealth.app.activity.FragmentFind;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.adapter.HotDynamicAdapter;
 import com.efithealth.app.javabean.HotDynamic;
 import com.efithealth.app.javabean.HotDynamicModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.view.refreshlistview.WaterDropListView;
@@ -110,7 +110,7 @@ public class FragmentHotDynamic extends BaseFragment implements
 				SharedPreferencesUtils.setParam(getActivity(), "dynId",
 						listAdapter.get(position).getDynid());
 				String page = "file:///android_asset/dynReview.html?memid="
-						+ MyApplication.getInstance().getMemid() + "&dynid="
+						+ App.getInstance().getMemid() + "&dynid="
 						+ listAdapter.get(position).getDynid() + "&from=hot";
 				Intent intent = new Intent(getActivity(), FindActivity.class);
 				intent.putExtra("url", page);
@@ -205,7 +205,7 @@ public class FragmentHotDynamic extends BaseFragment implements
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("pageIndex", pageIndex + "");
 				if (type == 4) {
 					String dynid = (String) SharedPreferencesUtils.getParam(

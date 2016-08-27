@@ -16,15 +16,13 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.javabean.CorderList;
-import com.efithealth.app.javabean.CreateTime;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
@@ -103,7 +101,7 @@ public class OrderClassAdapter extends BaseAdapter {
 
 		ImageLoader.getInstance().displayImage(corderList.getCa_imgsfilename(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		holder.tv_name.setText(corderList.getCa_nickname());
 		holder.tv_clubNme.setText(corderList.getClubname());
 		if (corderList.getPaystatus().equals("0")) {
@@ -252,7 +250,7 @@ public class OrderClassAdapter extends BaseAdapter {
 											+ corderList.getOrdno()
 											+ "&ordamt="
 											+ corderList.getOrdamt()
-											+ "&memid=" + MyApplication.getInstance().getMemid();
+											+ "&memid=" + App.getInstance().getMemid();
 									SharedPreferencesUtils.setParam(context, "paypage", page);
 									MainActivity.instance.setTabSelection(505);
 								} else {
@@ -275,7 +273,7 @@ public class OrderClassAdapter extends BaseAdapter {
 									} else { //私教
 										page = "file:///android_asset/pcourse.html?pcourseid=" + courseid + "&coachname=" +
 												corderList.getCoachname() + "&mobphone=" + mobphone + 
-												"&memid=" + MyApplication.getInstance().getMemid();
+												"&memid=" + App.getInstance().getMemid();
 										
 									}
 									MainActivity.instance.setTabWebViewSelection(page);

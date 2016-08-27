@@ -8,20 +8,16 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMContact;
 import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMConversation.EMConversationType;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.adapter.ChatAllHistoryAdapter;
 import com.efithealth.app.db.InviteMessgeDao;
 import com.efithealth.app.domain.User;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.menu.ActionItem;
 import com.efithealth.app.menu.TitlePopup;
 import com.efithealth.app.menu.TitlePopup.OnItemOnClickListener;
@@ -29,15 +25,12 @@ import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.ToastCommom;
 import com.efithealth.app.utils.UserUtils;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
-import com.google.gson.Gson;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextMenu;
@@ -55,8 +48,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -129,7 +120,7 @@ public class ChatAllHistoryFragment extends Fragment implements View.OnClickList
 				EMConversation conversation = adapter.getItem(position);
 				String username = conversation.getUserName();
 				Log.i("namenamenamename", username);
-				if (username.equals(MyApplication.getInstance().getUserName()))
+				if (username.equals(App.getInstance().getUserName()))
 					ToastCommom.getInstance().ToastShow(getActivity(), st2);
 				else {
 					// 进入聊天页面
@@ -286,7 +277,7 @@ public class ChatAllHistoryFragment extends Fragment implements View.OnClickList
 								UserUtils.saveUserInfo(f_user);
 								// localUsers.put(f_memeid, f_user);
 								// UserUtils.updateUserInfo(localUsers);
-								Log.e("MyApplication", "好友信息更新成功");
+								Log.e("App", "好友信息更新成功");
 							}
 							// {"memInfo":{"birth":"","updatetime":{"nanos":0,"time":1461758733000,"minutes":5,"seconds":33,"hours":20,"month":3,"year":116,"timezoneOffset":-480,"day":3,"date":27},"remark":"","posiupdatetime":{"nanos":0,"time":1461758733000,"minutes":5,"seconds":33,"hours":20,"month":3,"year":116,"timezoneOffset":-480,"day":3,"date":27},"gendername":"男","concernnum":3,"checkopinion":"","pkeyListStr":"","createuser":"M000014","isclubadminname":"否","headpage":"0","memname":"","istopfile":[],"imagefile":[],"gender":"1","clubid":"","longitude":0E-10,"coursetimes":0,"signature":"","courseprice":0,"evascore":0,"status":"1","nickname":"宝宝","dynamicnum":0,"nowtimestr":"","curMemrole":"mem","ispushname":"开启","linkurl":"","ycoinnum":800,"modifyuser":"","isstealth":"0","dayadd":"","nowTime":0,"coachcertname":"无","istrans":"1","applydescr":"","resinform":"","imgsfile":"/image/bmember/M000014_1461746175845_s.png","lessontotal":0,"latitude":0E-10,"imgfileFileName":"","lessonresent":0,"clubname":"","phonedeviceno":"990006202091731","imgsfilename":"http://efithealthresource.oss-cn-beijing.aliyuncs.com/image/bmember/M000014_1461746175845_s.png","memrole":"","birthday":{"nanos":0,"time":315504000000,"minutes":0,"seconds":0,"hours":0,"month":0,"year":80,"timezoneOffset":-480,"day":2,"date":1},"statusname":"有效","evatimes":0,"ispush":"1","follownum":1,"coachadept":"","recname":"高原","recphone":"13941689367","createtime":{"nanos":0,"time":1461400213000,"minutes":30,"seconds":13,"hours":16,"month":3,"year":116,"timezoneOffset":-480,"day":6,"date":23},"identity":"","ycoincashnum":0,"distance":0,"coachprice":0,"headpagename":"未设置","imgpfilename":"http://efithealthresource.oss-cn-beijing.aliyuncs.com/image/bmember/M000014_1461746175845_p.png","imgpfile":"/image/bmember/M000014_1461746175845_p.png","mempass":"e10adc3949ba59abbe56e057f20f883e","recaddress":"沈阳市和平区市府大路北三经街北市家园三号楼一单元1601","sorttype":"","applydatestr":"","isclubadmin":"0","identcode":"","distancestr":"","mobphone":"13941689367","evascoretotal":0,"memid":"M000014","coachcert":"0"},"msgContent":"显示会员信息","msgFlag":"1"}
 						}

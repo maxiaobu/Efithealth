@@ -10,16 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.easemob.EMCallBack;
-import com.easemob.EMNotifierEvent;
-import com.easemob.chat.EMChatManager;
-import com.easemob.util.EMLog;
 import com.efithealth.R;
-import com.efithealth.app.Constant;
-import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FragmentHome;
 import com.efithealth.app.activity.LoginActivity;
-import com.efithealth.app.activity.LunchListActivity;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.maxiaobu.utils.RequestManager;
 import com.efithealth.app.utils.SharedPreferencesUtils;
@@ -33,7 +26,7 @@ import com.umeng.analytics.MobclickAgent;
  * 清空网络请求线程
  *
  */
-public class BaseAty extends AppCompatActivity {
+public abstract class BaseAty extends AppCompatActivity {
     public Context myApplication;
     public AppCompatActivity mActivity;
 
@@ -44,10 +37,14 @@ public class BaseAty extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myApplication = MyApplication.applicationContext;
+        myApplication = App.applicationContext;
         mActivity = this;
 //        setStatusColor();//沉浸式布局
     }
+
+     public abstract void  initView();
+     public abstract void  initData();
+
 
     @Override
     public void startActivity(Intent intent) {
@@ -89,7 +86,7 @@ public class BaseAty extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-        if (MyApplication.getInstance().getMemid().equals("")) {
+        if (App.getInstance().getMemid().equals("")) {
             android.app.AlertDialog.Builder builder=new AlertDialog.Builder(mActivity);
             builder.setTitle("重要提示");
             builder.setMessage("登录已经过期，请重新登录！");
@@ -130,7 +127,7 @@ public class BaseAty extends AppCompatActivity {
      * 重新显示登陆页面
      */
     public void showWarning(){
-        MyApplication.getInstance().logout(true, new EMCallBack() {
+        App.getInstance().logout(true, new EMCallBack() {
 
             @Override
             public void onError(int arg0, String arg1) {

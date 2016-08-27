@@ -9,7 +9,7 @@
         android:id="@+id/toolbar_common"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#ffffff"
+        android:background="#F27241"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:navigationIcon="@mipmap/ic_navigation_icon"
         app:collapseIcon="@mipmap/ic_navigation_icon"
@@ -21,6 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/colorTextPrimary" />
+            android:textColor="@color/white" />
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>

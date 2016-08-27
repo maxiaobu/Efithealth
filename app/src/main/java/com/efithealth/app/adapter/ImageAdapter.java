@@ -3,9 +3,8 @@ package com.efithealth.app.adapter;
 import java.util.List;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.activity.ImageWall;
 import com.efithealth.app.activity.MyInfo;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
@@ -72,7 +71,7 @@ public class ImageAdapter extends ArrayAdapter {
 				add_img.setImageBitmap(bm);
 			} else {
 				ImageLoader.getInstance().displayImage(str_img, add_img,
-						MyApplication.getInstance().initPicDisImgOption());
+						App.getInstance().initPicDisImgOption());
 			}
 
 			del_img.setOnClickListener(new OnClickListener() {

@@ -12,12 +12,12 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.javabean.ClubList;
 import com.efithealth.app.javabean.CreateTime;
 import com.efithealth.app.javabean.MassageDetails;
 import com.efithealth.app.javabean.MassageDetailsModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.google.gson.Gson;
@@ -127,7 +127,7 @@ public class FragmentMassageDetails extends BaseFragment {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("massageid", massageid);
 				return map;
 			}
@@ -144,7 +144,7 @@ public class FragmentMassageDetails extends BaseFragment {
 		CreateTime createTime = detailsModel.getCreatetime();
 		list=massageDetails.getClublist();
 		ImageLoader.getInstance().displayImage(detailsModel.getImgpfilename(),
-				iv_head, MyApplication.getInstance().initHomeDisImgOption1());
+				iv_head, App.getInstance().initHomeDisImgOption1());
 		tv_name.setText(detailsModel.getMname());
 		tv_appraise.setText(detailsModel.getStatus());
 		tv_details.setText(detailsModel.getSubtitle());

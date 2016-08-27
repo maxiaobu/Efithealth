@@ -3,8 +3,8 @@ package com.efithealth.app.adapter;
 import java.util.List;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.javabean.MassageList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -61,7 +61,7 @@ public class MassageListAdapter extends BaseAdapter{
 		
 		MassageList massageList=list.get(position);
 		ImageLoader.getInstance().displayImage(massageList.getImgsfilename(), holder.iv_head,
-				MyApplication.getInstance().initPicDisImgOption());
+				App.getInstance().initPicDisImgOption());
 		holder.tv_name.setText(massageList.getMname());
 		holder.tv_message.setText(massageList.getSubtitle());
 		holder.tv_time.setText(massageList.getTimeconsuming()+"分钟");

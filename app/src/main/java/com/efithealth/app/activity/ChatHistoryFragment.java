@@ -46,6 +46,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContact;
@@ -53,7 +54,6 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.DemoHXSDKHelper;
 import com.efithealth.R;
 import com.efithealth.app.adapter.ChatHistoryAdapter;
@@ -98,7 +98,7 @@ public class ChatHistoryFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				EMContact emContact = adapter.getItem(position);
-				if (adapter.getItem(position).getUsername().equals(MyApplication.getInstance().getUserName()))
+				if (adapter.getItem(position).getUsername().equals(App.getInstance().getUserName()))
 					Toast.makeText(getActivity(), st, 0).show();
 				else {
 					// 进入聊天页面

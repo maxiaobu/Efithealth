@@ -12,7 +12,6 @@ import org.json.JSONException;
 
 import uk.co.senab.photoview.image.ImagePagerActivity;
 
-import com.alibaba.fastjson.JSONObject;
 import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -20,10 +19,10 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FindActivity;
 import com.efithealth.app.javabean.CreateTime;
 import com.efithealth.app.javabean.HotDynamic;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -109,7 +108,7 @@ public class HotDynamicAdapter extends BaseAdapter {
 		CreateTime createtime = dynamic.getCreatetime();
 		ImageLoader.getInstance().displayImage(dynamic.getImgsfilename(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		if (dynamic.getIsPoint().equals("1")) {
 			// 已点赞
 			holder.iv_zan.setImageResource(R.drawable.zan_red);
@@ -194,7 +193,7 @@ public class HotDynamicAdapter extends BaseAdapter {
 				SharedPreferencesUtils.setParam(context, "dynId",
 						dynamic.getDynid());
 				String page = "file:///android_asset/dynReview.html?memid="
-						+ MyApplication.getInstance().getMemid() + "&dynid="
+						+ App.getInstance().getMemid() + "&dynid="
 						+ dynamic.getDynid() + "&from=hot";
 				Intent intent = new Intent(context, FindActivity.class);
 				intent.putExtra("url", page);
@@ -253,7 +252,7 @@ public class HotDynamicAdapter extends BaseAdapter {
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
 				map.put("pageIndex", "1");
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("dynid", dynid);
 				return map;
 			}
@@ -306,7 +305,7 @@ public class HotDynamicAdapter extends BaseAdapter {
 			ImageLoader.getInstance().displayImage(
 					dynamic.getImgList().get(position).getImgsfilename(),
 					holder.iv,
-					MyApplication.getInstance().initPicDisImgOption());
+					App.getInstance().initPicDisImgOption());
 
 			return v;
 		}

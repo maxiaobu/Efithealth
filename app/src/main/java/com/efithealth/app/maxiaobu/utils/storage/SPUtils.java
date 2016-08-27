@@ -3,13 +3,15 @@ package com.efithealth.app.maxiaobu.utils.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.efithealth.R;
+
 /**
  * Created by 马小布 on 2016/8/12.
  * sp工具类
  */
 public class SPUtils {
     private SPUtils() {
-        throw new UnsupportedOperationException("u can't fuck me...");
+        throw new UnsupportedOperationException("u can u up...");
     }
 
     /**
@@ -193,6 +195,8 @@ public class SPUtils {
         return getSP(context).getBoolean(key, defaultValue);
     }
 
+
+
     /**
      * 获取name为PREFERENCE_NAME的SP对象
      *
@@ -201,5 +205,29 @@ public class SPUtils {
      */
     private static SharedPreferences getSP(Context context) {
         return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+    }
+
+    /**
+     * 根据键删除单条sp
+     * @param context
+     * @param key sp的键
+     */
+    public static boolean deleteSingleData(Context context, String key) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(key);
+        return editor.commit();
+    }
+
+    /**
+     * 删除全部sp数据
+     * @param context
+     * @return
+     */
+    public static boolean clearAllData(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        return editor.commit();
     }
 }

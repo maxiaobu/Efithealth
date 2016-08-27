@@ -1,14 +1,6 @@
 package com.efithealth.app.activity;
 
-import com.alibaba.fastjson.JSONObject;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMGroupManager;
-import com.efithealth.R;
-import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -17,10 +9,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
-import android.widget.Toast;
+
+import com.easemob.chat.EMChatManager;
+import com.efithealth.R;
+import com.efithealth.app.DemoHXSDKHelper;
+import com.efithealth.app.maxiaobu.base.App;
 
 /**
  * 开屏页
+ * 设置动画 --guide-登录--主页面--更新--初始化环信
  *
  */
 public class SplashActivity extends BaseActivity {
@@ -99,9 +96,9 @@ public class SplashActivity extends BaseActivity {
            
     };
 	public void updateData(){
-		MyApplication.getInstance().update_loacl_friend();
- 		MyApplication.getInstance().update_local_myinfo();
- 		MyApplication.getInstance().update_loacl_indexdata();
+		App.getInstance().update_loacl_friend();
+ 		App.getInstance().update_local_myinfo();
+ 		App.getInstance().update_loacl_indexdata();
 	}
 	
 }

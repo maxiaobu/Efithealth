@@ -3,8 +3,8 @@ package com.efithealth.app.adapter;
 import java.util.List;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ImageWall;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
@@ -65,7 +65,7 @@ public class ImageWallAdapter extends ArrayAdapter {
 			
 			add_img = (ImageView) convertView.findViewById(R.id.test1);				
 			ImageLoader.getInstance().displayImage("drawable://" + R.drawable.myinfomr,add_img,
-    				MyApplication.getInstance().initPicDisImgOption());
+    				App.getInstance().initPicDisImgOption());
 			add_img.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0){					
@@ -81,7 +81,7 @@ public class ImageWallAdapter extends ArrayAdapter {
 				add_img.setImageBitmap(bm);
 			} else {
 				ImageLoader.getInstance().displayImage(str_img, add_img,
-						MyApplication.getInstance().initPicDisImgOption());
+						App.getInstance().initPicDisImgOption());
 			}
 //			add_img.setOnClickListener(new OnClickListener() {
 //				@Override

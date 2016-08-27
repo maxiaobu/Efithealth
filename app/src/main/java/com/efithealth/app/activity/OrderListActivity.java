@@ -41,13 +41,27 @@ public class OrderListActivity extends BaseAty {
         init();
     }
 
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
     private void init() {
+        int foodFlag = getIntent().getIntExtra("orderFlag", -1);
         setCommonBackToolBar(mToolbarCommon,mTvTitleCommon,"订单列表");
         if (mViewpager != null) {
             setupViewPager(mViewpager);
             mViewpager.setOffscreenPageLimit(1);
         }
         mTabs.setupWithViewPager(mViewpager);
+        if (foodFlag==2){
+            mViewpager.setCurrentItem(1,true);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

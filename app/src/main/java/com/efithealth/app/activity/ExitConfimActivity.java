@@ -2,12 +2,11 @@ package com.efithealth.app.activity;
 
 import com.easemob.EMCallBack;
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,7 +47,7 @@ public class ExitConfimActivity extends Activity {
       }  
 	public void exitbutton0(View v) {  
 		
-			MyApplication.getInstance().logout(true, new EMCallBack() {
+			App.getInstance().logout(true, new EMCallBack() {
 
 				@Override
 				public void onError(int arg0, String arg1) {

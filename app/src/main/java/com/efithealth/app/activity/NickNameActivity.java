@@ -7,10 +7,9 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMGroupManager;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
@@ -31,7 +30,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -243,8 +241,8 @@ public class NickNameActivity extends Activity {
 						return;
 					}
 					// 登陆成功，保存用户名密码
-					MyApplication.getInstance().setUserName(memid);
-					MyApplication.getInstance().setPassword(strPass);
+					App.getInstance().setUserName(memid);
+					App.getInstance().setPassword(strPass);
 					runOnUiThread(new Runnable() {
 						public void run() {
 							dialog.setMessage(getString(R.string.list_is_for));
@@ -265,7 +263,7 @@ public class NickNameActivity extends Activity {
 						runOnUiThread(new Runnable() {
 							public void run() {
 								dialog.dismiss();
-								MyApplication.getInstance().logout(true, null);
+								App.getInstance().logout(true, null);
 								ToastCommom.getInstance().ToastShow(NickNameActivity.this,
 										getString(R.string.login_failure_failed));
 							}
@@ -324,8 +322,8 @@ public class NickNameActivity extends Activity {
 	};
 
 	public void updateData() {
-		MyApplication.getInstance().update_loacl_friend();
-		MyApplication.getInstance().update_local_myinfo();
-		MyApplication.getInstance().update_loacl_indexdata();
+		App.getInstance().update_loacl_friend();
+		App.getInstance().update_local_myinfo();
+		App.getInstance().update_loacl_indexdata();
 	}
 }

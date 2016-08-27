@@ -22,31 +22,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,24 +44,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Request.Method;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.activity.GroupSimpleDetailActivity.MyAdapter;
 import com.efithealth.app.fragment.FragmentFriendGroup;
 import com.efithealth.app.javabean.Group;
 import com.efithealth.app.javabean.GroupDetailsModle;
 import com.efithealth.app.javabean.GroupPerson;
 import com.efithealth.app.javabean.Memberlist;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
-import com.efithealth.app.utils.UserUtils;
-import com.efithealth.app.widget.ExpandGridView;
-import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.EMLog;
-import com.easemob.util.NetUtils;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -104,7 +85,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		instance = this;
 		glyid = getIntent().getExtras().getString("managerid");
 		initView();
-		if (glyid.equals(MyApplication.getInstance().getMemid())) {
+		if (glyid.equals(App.getInstance().getMemid())) {
 			iv_gl.setVisibility(View.VISIBLE);
 			iv_gl_q.setVisibility(View.VISIBLE);
 			tv_commit.setVisibility(View.GONE);
@@ -188,7 +169,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				} else {
 					map.put("groupid",
 							getIntent().getExtras().getString("groupid"));
-					map.put("memid", MyApplication.getInstance().getMemid());
+					map.put("memid", App.getInstance().getMemid());
 				}
 				return map;
 			}
@@ -216,7 +197,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				tv_commit.setEnabled(true);
 				ImageLoader.getInstance().displayImage(Constant.URL_RESOURCE+group.getImgsfile(),
 						iv_head,
-						MyApplication.getInstance().initHeadDisImgOption());
+						App.getInstance().initHeadDisImgOption());
 				tv_name.setText(group.getGname());
 				tv_fl.setText(group.getGsortname());
 				tv_introduction.setText(str1);
@@ -246,7 +227,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 					JSONObject obj = object.getJSONObject("member");
 					ImageLoader.getInstance().displayImage(
 							obj.getString("imgsfilename"), iv_head_q,
-							MyApplication.getInstance().initHeadDisImgOption());
+							App.getInstance().initHeadDisImgOption());
 					tv_name_q.setText(obj.getString("nickname"));
 					tv_jj_q.setText(obj.getString("signature"));
 
@@ -438,7 +419,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 			ImageView iv = (ImageView) v.findViewById(R.id.aasdfghjkl);
 			ImageLoader.getInstance().displayImage(
 					Constant.URL_RESOURCE+list.get(position).getImgsfile(), iv,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			return v;
 		}
 		

@@ -13,17 +13,14 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.javabean.BeanSaveOrderInfo;
 import com.efithealth.app.javabean.BeanUserInfoById;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.maxiaobu.base.BaseAty;
 import com.efithealth.app.maxiaobu.utils.IRequest;
 import com.efithealth.app.maxiaobu.utils.JsonUtils;
 import com.efithealth.app.maxiaobu.utils.RequestListener;
 import com.efithealth.app.maxiaobu.utils.RequestParams;
-import com.google.gson.JsonObject;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -83,7 +80,7 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
         initData();
     }
 
-    private void initView() {
+    public void initView() {
         mTotlePrice = mPrice * mNum;
         mTvPrice.setText(String.valueOf(mPrice) + "元");
         mTvFoodNum.setText(String.valueOf(mNum));
@@ -93,10 +90,10 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
 
     }
 
-    private void initData() {
+    public void initData() {
         //http://192.168.1.121:8080/efithealth/mmeById.do?memid=M000439 用户信息
-        RequestParams para = new RequestParams("memid", MyApplication.getInstance().getMemid());
-        IRequest.post(mActivity, Constant.URL_USER_INFO_BY_ID, para,"", new RequestListener() {
+        RequestParams para = new RequestParams("memid", App.getInstance().getMemid());
+        IRequest.post(mActivity, Constant.URL_USER_INFO_BY_ID, para, "", new RequestListener() {
             @Override
             public void requestSuccess(String json) {
                 BeanUserInfoById object = JsonUtils.object(json, BeanUserInfoById.class);
@@ -149,27 +146,26 @@ public class OrderConfirmActivity extends BaseAty implements View.OnClickListene
             case R.id.tv_now_order:
 
                 RequestParams requestParams = new RequestParams();
-                requestParams.put("memid", MyApplication.getInstance().getMemid());
+                requestParams.put("memid", App.getInstance().getMemid());
                 requestParams.put("mernum", String.valueOf(mNum));
                 requestParams.put("ordamt", String.valueOf(mTotlePrice));
                 requestParams.put("isShopcart", "0");
                 String s = "{foodmers:[{merid:" + mMerid + ",buynum:" + mNum + "}]}";
                 requestParams.put("foodmers", s);
 
-                IRequest.post(this, Constant.URL_SAVE_ORDER_INDO, requestParams,"", new RequestListener() {
+                IRequest.post(this, Constant.URL_SAVE_ORDER_INDO, requestParams, "", new RequestListener() {
                     @Override
                     public void requestSuccess(String json) {
-                        try {
-                            JSONObject myJsonObject = new JSONObject(json);
-                            String msgContent = (String) myJsonObject.get("msgContent");
-                            if ("订单确认成功!".equals(msgContent)){
-                                startActivity(new Intent(OrderConfirmActivity.this, PayActivity.class));
-                            }else {
-                                Toast.makeText(mActivity, "订单确认失败!", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            Toast.makeText(mActivity, "接口变了!", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
+                        Log.d("OrderConfirmActivity", json);
+                        BeanSaveOrderInfo object = JsonUtils.object(json, BeanSaveOrderInfo.class);
+                        if ("1".equals(object.getMsgFlag())) {
+                            Intent intent = new Intent(new Intent(OrderConfirmActivity.this, PayActivity.class));
+                            intent.putExtra("totlePrice", String.valueOf(mTotlePrice));
+                            intent.putExtra("ordno", String.valueOf(object.getOrdno()));
+//                                Log.d("OrderConfirmActivity", object.getOrdno().toString());
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(mActivity, "订单确认失败!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

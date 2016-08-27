@@ -13,14 +13,12 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.Photo.ChoosePhotoActivity;
 import com.efithealth.app.Photo.ChoosePhotoActivity2;
 import com.efithealth.app.activity.FragmentHome;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.activity.PublishActiviy;
 import com.efithealth.app.entity.ClubList;
 import com.efithealth.app.entity.MpCourseSave;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.StringUtil;
@@ -40,18 +38,15 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -145,14 +140,14 @@ public class FragmentIssueCourse extends BaseFragment {
 				if (!checkInput())
 					return;
 				showProgressDialog();
-				if (MyApplication.getInstance().editCourseFlag) {// 从编程过来的,走下面的请求
+				if (App.getInstance().editCourseFlag) {// 从编程过来的,走下面的请求
 					Log.d("debug", "编程课程");
 
-					int i = MyApplication.getInstance().coursePosition;// 课程位置
+					int i = App.getInstance().coursePosition;// 课程位置
 																		// 上线课程在listview里的位置
 
 					Map<String, String> map = new HashMap<String, String>();
-					map.put("pcourseid", MyApplication.getInstance().mCourseList.getCourseList().get(i).getPcourseid());// 课程编号
+					map.put("pcourseid", App.getInstance().mCourseList.getCourseList().get(i).getPcourseid());// 课程编号
 					map.put("pcoursename", et_course_name.getText().toString());// 名称修改
 
 					if (!StringUtil.isEmpty(path)) {
@@ -179,7 +174,7 @@ public class FragmentIssueCourse extends BaseFragment {
 							if ("1".equals(mpCourseSave.getMsgFlag())) {
 
 								btn_issue_commit_flag = true;
-								MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+								App.getInstance().newCourseFlag = true;// 改变发布课程标志
 								ToastCommom.getInstance().ToastShow(getActivity(), mpCourseSave.getMsgContent());
 								Bimp.drr.clear();
 								Bimp.bmp.clear();
@@ -229,7 +224,7 @@ public class FragmentIssueCourse extends BaseFragment {
 							if ("1".equals(mpCourseSave.getMsgFlag())) {
 
 								btn_issue_commit_flag = true;
-								MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+								App.getInstance().newCourseFlag = true;// 改变发布课程标志
 								ToastCommom.getInstance().ToastShow(getActivity(), mpCourseSave.getMsgContent());
 								Bimp.drr.clear();
 								Bimp.bmp.clear();
@@ -259,7 +254,7 @@ public class FragmentIssueCourse extends BaseFragment {
 				Bimp.act_bool = true;
 				FileUtils.deleteDir();
 				if (btn_issue_commit_flag) {
-					MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+					App.getInstance().newCourseFlag = true;// 改变发布课程标志
 				}
 				MainActivity.instance.returnBack();
 			}
@@ -279,23 +274,23 @@ public class FragmentIssueCourse extends BaseFragment {
 
 		request();// 获得教练绑定的俱乐部信息
 
-		if (MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (App.getInstance().editCourseFlag) {// 编程课程
 			et_club.setVisibility(View.GONE);
 			rl_club.setVisibility(View.GONE);
 			tv_title_centre.setText("编辑课程");
 
-			int i = MyApplication.getInstance().coursePosition;// 课程位置
+			int i = App.getInstance().coursePosition;// 课程位置
 																// 上线课程在listview里的位置
 
 			ImageLoader.getInstance().displayImage(
-					MyApplication.getInstance().mCourseList.getCourseList().get(i).getImgpfile(), iv_course_picture,
-					MyApplication.getInstance().initPicDisImgOption());
+					App.getInstance().mCourseList.getCourseList().get(i).getImgpfile(), iv_course_picture,
+					App.getInstance().initPicDisImgOption());
 
-			et_course_name.setText(MyApplication.getInstance().mCourseList.getCourseList().get(i).getPcoursename());
-			et_course_number.setText(MyApplication.getInstance().mCourseList.getCourseList().get(i).getPcoursetimes());
-			et_course_time.setText(MyApplication.getInstance().mCourseList.getCourseList().get(i).getPcoursedays());
-			et_price.setText(MyApplication.getInstance().mCourseList.getCourseList().get(i).getPcourseprice());
-			et_notice.setText(MyApplication.getInstance().mCourseList.getCourseList().get(i).getResinform());
+			et_course_name.setText(App.getInstance().mCourseList.getCourseList().get(i).getPcoursename());
+			et_course_number.setText(App.getInstance().mCourseList.getCourseList().get(i).getPcoursetimes());
+			et_course_time.setText(App.getInstance().mCourseList.getCourseList().get(i).getPcoursedays());
+			et_price.setText(App.getInstance().mCourseList.getCourseList().get(i).getPcourseprice());
+			et_notice.setText(App.getInstance().mCourseList.getCourseList().get(i).getResinform());
 
 		} else {
 			tv_title_centre.setText("发布课程");
@@ -649,7 +644,7 @@ public class FragmentIssueCourse extends BaseFragment {
 	
 	private Boolean checkInput() {
 
-		if (!MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (!App.getInstance().editCourseFlag) {// 编程课程
 			if (StringUtil.isEmpty(path)) {
 				ToastCommom.getInstance().ToastShow(getActivity(), "课程图片不能为空");
 				return false;
@@ -669,7 +664,7 @@ public class FragmentIssueCourse extends BaseFragment {
 			return false;
 		}
 
-		if (!MyApplication.getInstance().editCourseFlag) {// 编程课程
+		if (!App.getInstance().editCourseFlag) {// 编程课程
 
 			if (StringUtil.isEmpty(et_club.getText().toString())) {
 				ToastCommom.getInstance().ToastShow(getActivity(), "合作俱乐部不能为空");

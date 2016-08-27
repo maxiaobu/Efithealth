@@ -14,12 +14,12 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.activity.RevampAddress;
 import com.efithealth.app.javabean.MassageOrderId;
 import com.efithealth.app.javabean.MassageOrderTime;
 import com.efithealth.app.javabean.Masseurlist;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.google.gson.Gson;
 
@@ -34,8 +34,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -124,9 +122,9 @@ public class FragmentMassageOrder extends BaseFragment implements
 		tv_address = (TextView) v.findViewById(R.id.massage_order_tv_address);
 		tv_clubname = (TextView) v.findViewById(R.id.massage_order_tv_clubname);
 		iv_address=(ImageView) v.findViewById(R.id.massage_order_iv_address);
-		tv_nickName.setText(MyApplication.getInstance().getMyInfo()
+		tv_nickName.setText(App.getInstance().getMyInfo()
 				.get("nickname"));
-		tv_phone.setText(MyApplication.getInstance().getMyInfo()
+		tv_phone.setText(App.getInstance().getMyInfo()
 				.get("addresphone"));
 		
 		if (tv_address.getLineCount() > 3) {
@@ -210,7 +208,7 @@ public class FragmentMassageOrder extends BaseFragment implements
 							FragmentMassageDetails.map.get("massagename"));
 					map.put("clubid", FragmentMassageDetails.map.get("clubid"));
 					map.put("ordamt", FragmentMassageDetails.map.get("ordamt"));
-					map.put("memid", MyApplication.getInstance().getMemid());
+					map.put("memid", App.getInstance().getMemid());
 					map.put("reservetime",
 							reservetime + map_time.get(position_list).getTime()
 									+ "");

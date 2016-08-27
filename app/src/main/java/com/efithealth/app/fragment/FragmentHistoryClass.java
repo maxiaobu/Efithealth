@@ -8,10 +8,10 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FragmentHome;
 import com.efithealth.app.entity.MCourseList;
 import com.efithealth.app.entity.MpCourseSave;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.ToastCommom;
@@ -92,9 +92,9 @@ public class FragmentHistoryClass extends BaseFragment {
 				closeProgressDialog();
 				Log.d("ha", data.toString());
 
-				MyApplication.getInstance().mHistoryCourseList = gson.fromJson(data.toString(), MCourseList.class);
+				App.getInstance().mHistoryCourseList = gson.fromJson(data.toString(), MCourseList.class);
 
-				myAdapter = new MyAdapter(getActivity(), MyApplication.getInstance().mHistoryCourseList);
+				myAdapter = new MyAdapter(getActivity(), App.getInstance().mHistoryCourseList);
 				lv_content.setAdapter(myAdapter);
 
 			}
@@ -165,7 +165,7 @@ public class FragmentHistoryClass extends BaseFragment {
 
 				map.clear();
 				map.put("pcourseid",
-						MyApplication.getInstance().mHistoryCourseList.getCourseList().get(position).getPcourseid());// 课程编号
+						App.getInstance().mHistoryCourseList.getCourseList().get(position).getPcourseid());// 课程编号
 				map.put("linestatus", "1");// 状态 0 历史 1 上线
 
 				showProgressDialog();
@@ -181,13 +181,13 @@ public class FragmentHistoryClass extends BaseFragment {
 						mpCourseSave = gson.fromJson(data.toString(), MpCourseSave.class);
 						if ("1".equals(mpCourseSave.getMsgFlag())) {
 
-							MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
-							MyApplication.getInstance().fragmentHistoryFlag = true;
-							MyApplication.getInstance().mCourseList
+							App.getInstance().newCourseFlag = true;// 改变发布课程标志
+							App.getInstance().fragmentHistoryFlag = true;
+							App.getInstance().mCourseList
 							.getCourseList()
-							.add(MyApplication.getInstance().mHistoryCourseList
+							.add(App.getInstance().mHistoryCourseList
 									.getCourseList().get(position));
-							MyApplication.getInstance().mHistoryCourseList.getCourseList().remove(position);
+							App.getInstance().mHistoryCourseList.getCourseList().remove(position);
 							myAdapter.notifyDataSetChanged();
 							
 //							MainActivity.instance.setTabSelection(100);
@@ -211,7 +211,7 @@ public class FragmentHistoryClass extends BaseFragment {
 				Log.d("=====", "删除" + position);
 				map.clear();
 				map.put("pcourseid",
-						MyApplication.getInstance().mHistoryCourseList.getCourseList().get(position).getPcourseid());// 课程id
+						App.getInstance().mHistoryCourseList.getCourseList().get(position).getPcourseid());// 课程id
 				showProgressDialog();
 				LoadDataFromServer taskdelete = new LoadDataFromServer(getActivity(), Constant.URL_DELETECOURSE, map);
 				taskdelete.getData(new DataCallBack() {
@@ -223,9 +223,9 @@ public class FragmentHistoryClass extends BaseFragment {
 						mpCourseSave = gson.fromJson(data.toString(), MpCourseSave.class);
 						if ("1".equals(mpCourseSave.getMsgFlag())) {
 
-							MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
-							MyApplication.getInstance().fragmentHistoryFlag = true;
-							MyApplication.getInstance().mHistoryCourseList.getCourseList().remove(position);
+							App.getInstance().newCourseFlag = true;// 改变发布课程标志
+							App.getInstance().fragmentHistoryFlag = true;
+							App.getInstance().mHistoryCourseList.getCourseList().remove(position);
 							myAdapter.notifyDataSetChanged();
 							
 							ToastCommom.getInstance().ToastShow(getActivity(), mpCourseSave.getMsgContent());
@@ -305,7 +305,7 @@ public class FragmentHistoryClass extends BaseFragment {
 			} else {
 				ImageLoader.getInstance().displayImage(str_img,
 						holder.iv_introduce,
-						MyApplication.getInstance().initPicDisImgOption());
+						App.getInstance().initPicDisImgOption());
 			}
 
 			holder.iv_item_edit.setOnClickListener(new View.OnClickListener() {

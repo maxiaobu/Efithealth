@@ -24,7 +24,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.easemob.chat.EMVideoCallHelper;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.maxiaobu.base.App;
 
 public class CameraHelper implements PreviewCallback {
     private static final String TAG = "CameraHelper";
@@ -309,6 +309,6 @@ public class CameraHelper implements PreviewCallback {
     }
 
     boolean isScreenOriatationPortrait() {
-        return MyApplication.applicationContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        return App.applicationContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 }

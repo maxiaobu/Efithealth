@@ -1,26 +1,20 @@
 package com.efithealth.app.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -32,21 +26,17 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FragmentHome;
-import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.activity.OnlineCourseActivity;
 import com.efithealth.app.entity.MCourseList;
 import com.efithealth.app.entity.MpCourseSave;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.StringUtil;
@@ -114,10 +104,10 @@ public class FragmentOnLineClass extends BaseFragment {
 				closeProgressDialog();
 				Log.d("===", data.toString());
 
-				MyApplication.getInstance().mCourseList = gson.fromJson(
+				App.getInstance().mCourseList = gson.fromJson(
 						data.toString(), MCourseList.class);
 
-				myAdapter = new MyAdapter(getActivity(), MyApplication
+				myAdapter = new MyAdapter(getActivity(), App
 						.getInstance().mCourseList);
 				lv_content.setAdapter(myAdapter);
 
@@ -130,9 +120,9 @@ public class FragmentOnLineClass extends BaseFragment {
 					public void onItemClick(AdapterView<?> adapterView,
 							View view, int i, long l) {
 						Log.d("=====", i + "");
-						MyApplication.getInstance().upDateIssueCourseFragment = true;// 更新发布课程fragment
-						MyApplication.getInstance().editCourseFlag = true;// 编程课程
-						MyApplication.getInstance().coursePosition = i;// 课程位置
+						App.getInstance().upDateIssueCourseFragment = true;// 更新发布课程fragment
+						App.getInstance().editCourseFlag = true;// 编程课程
+						App.getInstance().coursePosition = i;// 课程位置
 						Intent intent = new Intent(getActivity(),
 								IssueCourseActivity.class);
 						startActivity(intent);
@@ -220,7 +210,7 @@ public class FragmentOnLineClass extends BaseFragment {
 			@Override
 			public void onClick(View arg0) {
 				Log.d("=====", "下线"
-						+ MyApplication.getInstance().mCourseList
+						+ App.getInstance().mCourseList
 								.getCourseList().get(position).getPcoursename());
 				showEditDialog(4, position);
 
@@ -260,7 +250,7 @@ public class FragmentOnLineClass extends BaseFragment {
 		case 1:// 名称
 			tv_title.setText("修改名称");
 			et_course_name.setVisibility(View.VISIBLE);
-			et_course_name.setText(MyApplication.getInstance().mCourseList
+			et_course_name.setText(App.getInstance().mCourseList
 					.getCourseList().get(position).getPcoursename());
 
 			break;
@@ -270,11 +260,11 @@ public class FragmentOnLineClass extends BaseFragment {
 			rl_course_time.setVisibility(View.VISIBLE);
 			et_price.setVisibility(View.VISIBLE);
 
-			et_course_number.setText(MyApplication.getInstance().mCourseList
+			et_course_number.setText(App.getInstance().mCourseList
 					.getCourseList().get(position).getPcoursetimes());
-			et_course_time.setText(MyApplication.getInstance().mCourseList
+			et_course_time.setText(App.getInstance().mCourseList
 					.getCourseList().get(position).getPcoursedays());
-			et_price.setText(MyApplication.getInstance().mCourseList
+			et_price.setText(App.getInstance().mCourseList
 					.getCourseList().get(position).getPcourseprice());
 
 			break;
@@ -303,7 +293,7 @@ public class FragmentOnLineClass extends BaseFragment {
 					}
 					map.clear();
 					map.put("pcourseid",
-							MyApplication.getInstance().mCourseList
+							App.getInstance().mCourseList
 									.getCourseList().get(position)
 									.getPcourseid());// 课程编号
 					map.put("pcoursename", et_course_name.getText().toString());
@@ -327,7 +317,7 @@ public class FragmentOnLineClass extends BaseFragment {
 					}
 					map.clear();
 					map.put("pcourseid",
-							MyApplication.getInstance().mCourseList
+							App.getInstance().mCourseList
 									.getCourseList().get(position)
 									.getPcourseid());// 课程编号
 					map.put("pcoursetimes", et_course_number.getText()
@@ -338,7 +328,7 @@ public class FragmentOnLineClass extends BaseFragment {
 				case 4:// 下线
 					map.clear();
 					map.put("pcourseid",
-							MyApplication.getInstance().mCourseList
+							App.getInstance().mCourseList
 									.getCourseList().get(position)
 									.getPcourseid());// 课程编号
 					map.put("linestatus", "0");// 1上线 0:下线
@@ -359,11 +349,11 @@ public class FragmentOnLineClass extends BaseFragment {
 								MpCourseSave.class);
 						if ("1".equals(mpCourseSave.getMsgFlag())) {
 
-							MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+							App.getInstance().newCourseFlag = true;// 改变发布课程标志
 
 							switch (index) {
 							case 1:
-								MyApplication.getInstance().mCourseList
+								App.getInstance().mCourseList
 										.getCourseList()
 										.get(position)
 										.setPcoursename(
@@ -371,31 +361,31 @@ public class FragmentOnLineClass extends BaseFragment {
 														.toString());
 								break;
 							case 3:
-								MyApplication.getInstance().mCourseList
+								App.getInstance().mCourseList
 										.getCourseList()
 										.get(position)
 										.setPcoursedays(
 												et_course_time.getText()
 														.toString());
-								MyApplication.getInstance().mCourseList
+								App.getInstance().mCourseList
 										.getCourseList()
 										.get(position)
 										.setPcoursetimes(
 												et_course_number.getText()
 														.toString());
-								MyApplication.getInstance().mCourseList
+								App.getInstance().mCourseList
 										.getCourseList()
 										.get(position)
 										.setPcourseprice(
 												et_price.getText().toString());
 								break;
 							case 4:
-								MyApplication.getInstance().mHistoryCourseList
+								App.getInstance().mHistoryCourseList
 										.getCourseList()
-										.add(MyApplication.getInstance().mCourseList
+										.add(App.getInstance().mCourseList
 												.getCourseList().get(position));
 
-								MyApplication.getInstance().mCourseList
+								App.getInstance().mCourseList
 										.getCourseList().remove(position);
 								break;
 
@@ -506,7 +496,7 @@ public class FragmentOnLineClass extends BaseFragment {
 			} else {
 				ImageLoader.getInstance().displayImage(str_img,
 						holder.iv_introduce,
-						MyApplication.getInstance().initPicDisImgOption());
+						App.getInstance().initPicDisImgOption());
 			}
 
 			holder.iv_item_edit.setOnClickListener(new View.OnClickListener() {

@@ -8,16 +8,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.adapter.ImageWallAdapter;
 import com.efithealth.app.entity.MpCourseSave;
 import com.efithealth.app.fragment.FragmentOnLineClass;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.StringUtil;
 import com.efithealth.app.utils.ToastCommom;
@@ -27,7 +25,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -44,7 +41,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
@@ -105,15 +101,15 @@ public class OnlineCourseActivity extends Activity {
 		Intent intent = this.getIntent(); // 获取已有的intent对象
 		Bundle bundle = intent.getExtras(); // 获取intent里面的bundle对象
 		position = bundle.getInt("position"); // 获取Bundle里面的字符串
-		String str_img = MyApplication.getInstance().mCourseList.getCourseList().get(position).getImgpfile();
+		String str_img = App.getInstance().mCourseList.getCourseList().get(position).getImgpfile();
 		if (!str_img.contains("http://")) {
 			Bitmap bm = BitmapFactory.decodeFile(str_img);
 			iv_course_picture.setImageBitmap(bm);
 		}else{
 			ImageLoader.getInstance().displayImage(
-					MyApplication.getInstance().mCourseList.getCourseList().get(position).getImgpfile(),
+					App.getInstance().mCourseList.getCourseList().get(position).getImgpfile(),
 					iv_course_picture,
-					MyApplication.getInstance().initPicDisImgOption());
+					App.getInstance().initPicDisImgOption());
 		}
 
 		iv_course_picture.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +138,7 @@ public class OnlineCourseActivity extends Activity {
 				
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("pcourseid",
-						MyApplication.getInstance().mCourseList.getCourseList().get(position).getPcourseid());// 课程编号
+						App.getInstance().mCourseList.getCourseList().get(position).getPcourseid());// 课程编号
 				map.put("imagefile", head_imagePath);// 图片修改
 
 				LoadDataFromServer task = new LoadDataFromServer(OnlineCourseActivity.this, Constant.URL_UPDATECOURSE,
@@ -161,10 +157,10 @@ public class OnlineCourseActivity extends Activity {
 							ToastCommom.getInstance().ToastShow(OnlineCourseActivity.this,
 									mpCourseSave.getMsgContent());
 
-							MyApplication.getInstance().newCourseFlag = true;// 改变发布课程标志
+							App.getInstance().newCourseFlag = true;// 改变发布课程标志
 							
 							FragmentOnLineClass.flag_img=true;
-							MyApplication.getInstance().mCourseList
+							App.getInstance().mCourseList
 							.getCourseList().get(position).setImgpfile(head_imagePath);
 //							MainActivity.instance.setTabSelection(100);
 							FragmentOnLineClass.instance.popupWindow.dismiss();
@@ -306,7 +302,7 @@ public class OnlineCourseActivity extends Activity {
 				break;
 			case PHOTO_REQUEST_CUT:
 				ImageLoader.getInstance().displayImage("file:///mnt" + Constant.DIR_PATH + head_imagePath,
-						iv_course_picture, MyApplication.getInstance().initPicDisImgOption());
+						iv_course_picture, App.getInstance().initPicDisImgOption());
 
 				break;
 

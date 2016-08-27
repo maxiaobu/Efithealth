@@ -80,6 +80,7 @@ import com.easemob.EMError;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.EMValueCallBack;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.applib.controller.HXSDKHelper;
 import com.efithealth.applib.model.GroupRemoveListener;
 import com.easemob.chat.EMChatManager;
@@ -97,7 +98,6 @@ import com.easemob.chat.NormalFileMessageBody;
 import com.easemob.chat.TextMessageBody;
 import com.easemob.chat.VideoMessageBody;
 import com.easemob.chat.VoiceMessageBody;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.DemoHXSDKHelper;
 import com.efithealth.R;
 import com.efithealth.app.adapter.ExpressionAdapter;
@@ -945,7 +945,7 @@ public class ChatActivity extends Activity implements OnClickListener, EMEventLi
 			return;
 		}
 
-		cameraFile = new File(PathUtil.getInstance().getImagePath(), MyApplication.getInstance().getUserName()
+		cameraFile = new File(PathUtil.getInstance().getImagePath(), App.getInstance().getUserName()
 				+ System.currentTimeMillis() + ".jpg");
 		cameraFile.getParentFile().mkdirs();
 		startActivityForResult(

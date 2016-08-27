@@ -20,19 +20,15 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ChatActivity;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.adapter.ChatHistoryAdapter;
 import com.efithealth.app.db.InviteMessgeDao;
-import com.efithealth.app.domain.User;
 import com.efithealth.app.javabean.GroupHistoryList;
 import com.efithealth.app.javabean.GroupList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
-import com.efithealth.applib.controller.HXSDKHelper;
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -41,29 +37,19 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class FragmentTalkGroup extends BaseFragment {
@@ -116,7 +102,7 @@ public class FragmentTalkGroup extends BaseFragment {
 				String managerid="";
 				String groupid="";
 				if (adapter.getItem(position).getUsername()
-						.equals(MyApplication.getInstance().getUserName()))
+						.equals(App.getInstance().getUserName()))
 					Toast.makeText(getActivity(), st, 0).show();
 				else {
 					String user = emContact.getUsername();

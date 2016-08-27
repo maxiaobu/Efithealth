@@ -13,7 +13,6 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ExitConfimActivity;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.activity.MyInfo;
@@ -21,12 +20,12 @@ import com.efithealth.app.activity.OrderListActivity;
 import com.efithealth.app.activity.QRCodeActivity;
 import com.efithealth.app.javabean.Member;
 import com.efithealth.app.javabean.MemberMolder;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.R.color;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -103,7 +102,7 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				return map;
 			}
 		};
@@ -196,7 +195,7 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				return map;
 			}
 		};
@@ -211,7 +210,7 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
 			member = molder.getMember();
 			ImageLoader.getInstance().displayImage(
 					member.getImgsfilename(), iv_head,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			tv_name.setText(member.getNickname());
 			String moneyS=molder.getYcoinnum();
 			money=Integer.parseInt(moneyS);
@@ -438,7 +437,7 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
 		// 个人中心
 		case R.id.me_iv_head:
 			page = "?tarid=" + member.getMemid() + "&role="+member.getMemrole()
-					+ "&memid=" + MyApplication.getInstance().getMemid();
+					+ "&memid=" + App.getInstance().getMemid();
 			page += "&memphoto=" + member.getImgsfile() + "&memnickname="
 					+ member.getNickname();
 			if (page != null && page.length() > 0) {

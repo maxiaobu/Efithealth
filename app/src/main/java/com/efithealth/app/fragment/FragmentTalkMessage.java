@@ -4,30 +4,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMContact;
 import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMConversation.EMConversationType;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ChatActivity;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.activity.MipcaActivityCapture;
 import com.efithealth.app.adapter.ChatAllHistoryAdapter;
 import com.efithealth.app.db.InviteMessgeDao;
 import com.efithealth.app.domain.User;
-import com.efithealth.app.menu.ActionItem;
-import com.efithealth.app.menu.TitlePopup;
-import com.efithealth.app.menu.TitlePopup.OnItemOnClickListener;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.ToastCommom;
 import com.efithealth.app.utils.UserUtils;
@@ -39,7 +31,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -105,7 +96,7 @@ public class FragmentTalkMessage extends BaseFragment {
 					int position, long id) {
 				EMConversation conversation = adapter.getItem(position);
 				String username = conversation.getUserName();
-				if (username.equals(MyApplication.getInstance().getUserName()))
+				if (username.equals(App.getInstance().getUserName()))
 					ToastCommom.getInstance().ToastShow(getActivity(), st2);
 				else {
 					// 进入聊天页面
@@ -241,7 +232,7 @@ public class FragmentTalkMessage extends BaseFragment {
 								f_user.setAvatar(f_headimg);
 								f_user.setNick(f_nickname);
 								UserUtils.saveUserInfo(f_user);
-								Log.e("MyApplication", "好友信息更新成功");
+								Log.e("App", "好友信息更新成功");
 								if (adapter != null)
 									adapter.notifyDataSetChanged();
 							}

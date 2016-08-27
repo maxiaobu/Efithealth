@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
@@ -21,6 +22,9 @@ android {
 
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -76,4 +80,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

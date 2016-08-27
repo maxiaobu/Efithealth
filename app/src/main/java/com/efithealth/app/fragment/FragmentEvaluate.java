@@ -13,16 +13,14 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.javabean.CreateTime;
 import com.efithealth.app.javabean.MassageDetails;
 import com.efithealth.app.javabean.MassageDetailsModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.parse.GetDataCallback;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -131,7 +129,7 @@ public class FragmentEvaluate extends BaseFragment implements OnClickListener {
 					map.put("orderid", orderid);
 					map.put("score", score + "");
 				} else {
-					map.put("memid", MyApplication.getInstance().getMemid());
+					map.put("memid", App.getInstance().getMemid());
 				}
 				return map;
 			}
@@ -149,7 +147,7 @@ public class FragmentEvaluate extends BaseFragment implements OnClickListener {
 		if (msgFlag.equals("1")) {
 			ImageLoader.getInstance().displayImage(
 					detailsModel.getImgpfilename(), iv_head,
-					MyApplication.getInstance().initPicDisImgOption());
+					App.getInstance().initPicDisImgOption());
 			tv_name.setText(detailsModel.getMname());
 			tv_sort.setText(detailsModel.getStatus());
 			tv_xq.setText(detailsModel.getSubtitle());

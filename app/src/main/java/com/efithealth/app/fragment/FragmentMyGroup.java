@@ -15,14 +15,11 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.util.EMLog;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.ChatActivity;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.adapter.GroupAdapter;
-import com.efithealth.app.fragment.FragmentFriendGroup.MyAdapter;
-import com.efithealth.app.fragment.FragmentFriendGroup.MyAdapter.ViewHolder;
 import com.efithealth.app.javabean.PublicGroup;
 import com.efithealth.app.javabean.PublicGroupModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.applib.controller.HXSDKHelper;
 import com.google.gson.Gson;
@@ -223,7 +220,7 @@ public class FragmentMyGroup extends BaseFragment {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				return map;
 			}
 		};
@@ -271,7 +268,7 @@ public class FragmentMyGroup extends BaseFragment {
 			PublicGroup group = listModel.get(positiion);
 			ImageLoader.getInstance().displayImage(
 					Constant.URL_RESOURCE + group.getImgsfile(), holder.head,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			holder.name.setText(group.getGname());
 			if (!group.getGsortname().equals("")) {
 				holder.sort.setVisibility(View.VISIBLE);

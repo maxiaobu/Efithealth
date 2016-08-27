@@ -3,14 +3,12 @@ package com.efithealth.app;
 import java.util.List;
 
 import com.efithealth.R;
-import com.efithealth.app.activity.MyInfo;
 import com.efithealth.app.activity.PublishActiviy;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +59,7 @@ public class ImagePublishAdapter extends ArrayAdapter{
 			str_img =  "file:///mnt" +str_img;	
 //			Bitmap bm = BitmapFactory.decodeFile(str_img);
 //			add_img.setImageBitmap(bm);
-			ImageLoader.getInstance().displayImage(str_img, add_img, MyApplication.getInstance().initPicDisImgOption());
+			ImageLoader.getInstance().displayImage(str_img, add_img, App.getInstance().initPicDisImgOption());
 			del_img.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {					

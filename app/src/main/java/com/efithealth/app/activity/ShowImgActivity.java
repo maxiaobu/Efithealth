@@ -1,7 +1,7 @@
 package com.efithealth.app.activity;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.maxiaobu.base.App;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -48,7 +48,7 @@ public class ShowImgActivity extends Activity {
 			Bitmap bm=BitmapFactory.decodeFile(img_path);
 			imgview.setImageBitmap(bm);
 		}else{
-			ImageLoader.getInstance().displayImage(img_path, imgview, MyApplication.getInstance().initPicDisImgOption());
+			ImageLoader.getInstance().displayImage(img_path, imgview, App.getInstance().initPicDisImgOption());
 		}				
 	}
 	

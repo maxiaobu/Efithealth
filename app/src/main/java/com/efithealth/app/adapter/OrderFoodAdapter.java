@@ -15,18 +15,15 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.javabean.CorderList;
 import com.efithealth.app.javabean.ForderList;
 import com.efithealth.app.javabean.MbFordermerList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +33,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -178,7 +174,7 @@ public class OrderFoodAdapter extends BaseAdapter {
 					switch (type) {
 					case 0:
 						if (msgflag.equals("1")) {
-							page = "pay.html?ordno=" + forderList.getOrdno() + "&ordamt=" + forderList.getOrdamt() + "&memid=" + MyApplication.getInstance().getMemid();
+							page = "pay.html?ordno=" + forderList.getOrdno() + "&ordamt=" + forderList.getOrdamt() + "&memid=" + App.getInstance().getMemid();
 							SharedPreferencesUtils.setParam(context, "paypage", page);
 							MainActivity.instance.setTabSelection(505);
 						}
@@ -195,7 +191,7 @@ public class OrderFoodAdapter extends BaseAdapter {
 								merInfo += mbList.get(position).getBuynum() + "|";
 								merInfo += mbList.get(position).getOrdno() + ",";
 							}
-							page = "file:///android_asset/foodmerBuy.html?memid=" + MyApplication.getInstance().getMemid() + "&merInfo=" + merInfo + "&ordamt=" + forderList.getOrdamt();
+							page = "file:///android_asset/foodmerBuy.html?memid=" + App.getInstance().getMemid() + "&merInfo=" + merInfo + "&ordamt=" + forderList.getOrdamt();
 							MainActivity.instance.setTabWebViewSelection(page);
 						}
 						break;

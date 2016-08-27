@@ -12,12 +12,10 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.adapter.OrderClassAdapter;
 import com.efithealth.app.adapter.OrderFoodAdapter;
-import com.efithealth.app.javabean.ClassOrderListModel;
 import com.efithealth.app.javabean.FoodOrderListModel;
 import com.efithealth.app.javabean.ForderList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.view.refreshlistview.WaterDropListView;
 import com.google.gson.Gson;
@@ -27,12 +25,10 @@ import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class FragmentOrderFood extends BaseFragment implements
@@ -171,7 +167,7 @@ public class FragmentOrderFood extends BaseFragment implements
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("pageIndex", pageIndex + "");
 				map.put("listtype", "forderlist");
 				return map;

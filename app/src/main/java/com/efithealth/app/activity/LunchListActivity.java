@@ -4,9 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.*;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -33,15 +30,12 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.bumptech.glide.Glide;
-import com.easemob.EMNotifierEvent;
-import com.easemob.chat.EMChatManager;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.adapter.LunchListAdapter;
 import com.efithealth.app.adapter.RvLunchSelectAdapter;
 import com.efithealth.app.javabean.BeanGoodsList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.maxiaobu.base.BaseAty;
 import com.efithealth.app.maxiaobu.utils.IRequest;
 import com.efithealth.app.maxiaobu.utils.JsonUtils;
@@ -151,7 +145,7 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
         initData();
     }
 
-    private void initView() {
+    public void initView() {
         setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "营养配餐");
         mData = new ArrayList<>();
         menuIcons = new int[]{};
@@ -224,10 +218,10 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
 
     }
 
-    private void initData() {
+    public void initData() {
         //http://192.168.1.121:8080/efithealth/mbFoodmers.do?memid=M000439&mertype=all&pageIndex=1&sorttype=sorttype
         RequestParams params = new RequestParams();
-        params.put("memid", MyApplication.getInstance().getMemid());
+        params.put("memid", App.getInstance().getMemid());
         params.put("pageIndex", String.valueOf(currentPage));
         params.put("sorttype", sorttype);//sorttype: merprice(按价格排序)； createtime(按时间排序)； 不排序不传值
         params.put("mertype", mertype);//mertype:all全部；1增肌；2塑形；3减脂
@@ -383,7 +377,7 @@ public class LunchListActivity extends BaseAty implements OnRefreshListener, OnL
                 mMenuAdapter.setLunchSelectItemClickListener(new RvLunchSelectAdapter.LunchSelectItemClickListener() {
                     @Override
                     public void onItemClick(View view, int postion) {
-                        String[] s = new String[]{"createtime", "createtime"}; //sorttype: merprice(按价格排序)； createtime(按时间排序)； 不排序不传值
+                        String[] s = new String[]{"createtime", "merprice"}; //sorttype: merprice(按价格排序)； createtime(按时间排序)； 不排序不传值
                         sorttype = s[postion];
                         mTvMenuTime.setText(menuTitles[postion]);
                         switchMenu(0);

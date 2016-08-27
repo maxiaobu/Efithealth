@@ -3,7 +3,6 @@ package com.efithealth.app.activity;
 import image.Bimp;
 import image.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -18,13 +17,10 @@ import uk.co.senab.photoview.image.ImagePagerActivity;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.Photo.ChoosePhotoActivity;
-import com.efithealth.app.Photo.ChoosePhotoActivity3;
 import com.efithealth.app.Photo.ChoosePhotoActivity4;
 import com.efithealth.app.Photo.ChoosePhotoActivity5;
 import com.efithealth.app.adapter.ImageWallAdapter;
-import com.efithealth.app.javabean.HotDynamic.ImgList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.SendImgWallTask;
 import com.efithealth.app.task.SendImgWallTask.DataCallBack;
 import com.efithealth.app.utils.ToastCommom;
@@ -35,12 +31,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -167,7 +161,7 @@ public class ImageWall extends BaseActivity {
 	public void getImgWallData() {
 		dialog.setMessage("照片墙信息读取中...");
 		dialog.show();
-		Map<String, String> map = MyApplication.getInstance().getImgWallInfo();
+		Map<String, String> map = App.getInstance().getImgWallInfo();
 		String topImgList = map.get("topImgList");
 		String moreImgList = map.get("moreImgList");
 		String topidlist = map.get("topidList");
@@ -434,7 +428,7 @@ public class ImageWall extends BaseActivity {
 		dialog.show();
 
 		Map<String, String> map = new HashMap<>();
-		map.put("memid", MyApplication.getInstance().getMemid());
+		map.put("memid", App.getInstance().getMemid());
 		if (!dimgstr.equals("")) {
 			map.put("dimg",
 					(String) dimgstr.subSequence(0, dimgstr.length() - 1));
@@ -457,7 +451,7 @@ public class ImageWall extends BaseActivity {
 				if (code == 1) {
 					ToastCommom.getInstance().ToastShow(ImageWall.this,
 							data.getString("msgContent"));
-					MyApplication.getInstance().update_loacl_imgWall();
+					App.getInstance().update_loacl_imgWall();
 					// FileUtils.deleteDir();
 				} else {
 					ToastCommom.getInstance().ToastShow(ImageWall.this,

@@ -10,8 +10,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.fragment.BaseFragment;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.HttpWeatherUtil;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
@@ -265,7 +265,7 @@ public class FragmentHome extends BaseFragment implements
 
 		map.put("longitude", jingdu);
 		map.put("latitude", weidu);
-		map.put("memid", MyApplication.getInstance().getMemid()); // 传递参数
+		map.put("memid", App.getInstance().getMemid()); // 传递参数
 		LoadDataFromServer task = new LoadDataFromServer(getActivity(),
 				Constant.URL_HOME, map);
 
@@ -421,7 +421,7 @@ public class FragmentHome extends BaseFragment implements
 	private void getWeather() {
 		new Thread() {
 			public void run() {
-				boolean flag = MyApplication.getInstance().isConnect(
+				boolean flag = App.getInstance().isConnect(
 						getActivity());
 				if (flag) {
 
@@ -573,7 +573,7 @@ public class FragmentHome extends BaseFragment implements
 
 		Map<String, String> map = new HashMap<String, String>();
 
-		map.put("memid", MyApplication.getInstance().getMemid()); // 传递参数
+		map.put("memid", App.getInstance().getMemid()); // 传递参数
 		map.put("dayadd", "0"); // 传递参数
 
 		LoadDataFromServer task = new LoadDataFromServer(getActivity(),
@@ -596,7 +596,7 @@ public class FragmentHome extends BaseFragment implements
 
 		Map<String, String> map = new HashMap<String, String>();
 
-		map.put("memid", MyApplication.getInstance().getMemid()); // 传递参数
+		map.put("memid", App.getInstance().getMemid()); // 传递参数
 		map.put("dayadd", "1"); // 传递参数
 
 		LoadDataFromServer task = new LoadDataFromServer(getActivity(),
@@ -618,7 +618,7 @@ public class FragmentHome extends BaseFragment implements
 
 		Map<String, String> map = new HashMap<String, String>();
 
-		map.put("memid", MyApplication.getInstance().getMemid()); // 传递参数
+		map.put("memid", App.getInstance().getMemid()); // 传递参数
 		map.put("dayadd", "2"); // 传递参数
 
 		LoadDataFromServer task = new LoadDataFromServer(getActivity(),

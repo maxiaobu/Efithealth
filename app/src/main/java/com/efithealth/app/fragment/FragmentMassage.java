@@ -12,12 +12,12 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.FragmentHome;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.adapter.MassageListAdapter;
 import com.efithealth.app.javabean.MassageList;
 import com.efithealth.app.javabean.MassageListModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.view.refreshlistview.WaterDropListView;
@@ -311,7 +311,7 @@ public class FragmentMassage extends BaseFragment implements
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("pageIndex", pageIndex + "");
 				map.put("pseqdesc", pseqdesc);
 				map.put("pfildesc", pfildesc);

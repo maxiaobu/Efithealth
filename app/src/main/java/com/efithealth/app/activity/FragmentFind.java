@@ -3,21 +3,16 @@ package com.efithealth.app.activity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import uk.co.senab.photoview.image.ImagePagerActivity;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.fragment.BaseFragment;
-import com.efithealth.app.fragment.FragmentNearbyPerson;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.BaseJsToAndroid;
 import com.efithealth.app.utils.SharedPreferencesUtils;
-import com.efithealth.app.utils.ToastCommom;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,17 +20,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -63,9 +55,9 @@ public class FragmentFind extends BaseFragment {
 	private List<View> pageViews = new ArrayList<View>();
 	private List<WebView> list_web = new ArrayList<WebView>();
 	private int selected_index = 0;
-	private String path = "?memid=" + MyApplication.getInstance().getMemid()
-			+ "&longitude=" + MyApplication.getInstance().mLongitude
-			+ "&latitude=" + MyApplication.getInstance().mLatitude;
+	private String path = "?memid=" + App.getInstance().getMemid()
+			+ "&longitude=" + App.getInstance().mLongitude
+			+ "&latitude=" + App.getInstance().mLatitude;
 	private String[] url = new String[] {
 			"file:///android_asset/peopelNearby.html"
 					+ MainActivity.instance.getPath(),

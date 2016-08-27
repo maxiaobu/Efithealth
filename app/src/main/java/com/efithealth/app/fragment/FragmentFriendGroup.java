@@ -12,12 +12,11 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.GroupSimpleDetailActivity;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.activity.PublicGroupsSeachActivity;
 import com.efithealth.app.javabean.PublicGroup;
 import com.efithealth.app.javabean.PublicGroupModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -196,7 +195,7 @@ public class FragmentFriendGroup extends BaseFragment {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				return map;
 			}
 		};
@@ -244,7 +243,7 @@ public class FragmentFriendGroup extends BaseFragment {
 			PublicGroup group = listModel.get(positiion);
 			ImageLoader.getInstance().displayImage(
 					Constant.URL_RESOURCE + group.getImgsfile(), holder.head,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			holder.name.setText(group.getGname());
 			if (!group.getGsortname().equals("")) {
 				holder.sort.setVisibility(View.VISIBLE);

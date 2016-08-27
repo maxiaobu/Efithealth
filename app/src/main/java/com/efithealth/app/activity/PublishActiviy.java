@@ -1,7 +1,7 @@
 package com.efithealth.app.activity;
 
 import image.Bimp;
-import android.util.Log;
+
 import android.view.ViewGroup.LayoutParams;
 import image.FileUtils;
 import image.PhotoActivity;
@@ -19,24 +19,21 @@ import kpswitch.widget.KPSwitchFSPanelLinearLayout;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.Photo.ChoosePhotoActivity;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.SendMyPublishTask;
 import com.efithealth.app.task.SendMyPublishTask.DataCallBack;
 import com.efithealth.app.utils.ToastCommom;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -54,7 +51,6 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -65,7 +61,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 /*
@@ -558,7 +553,7 @@ public class PublishActiviy extends BaseActivity {
 
 		Map<String, String> map = new HashMap<String, String>();
 		String content = et_content.getText().toString();
-		map.put("memid", MyApplication.getInstance().getMemid());
+		map.put("memid", App.getInstance().getMemid());
 		map.put("content", content);
 		map.put("isprivate", isclose);
 		map.put("istop", "1");

@@ -12,14 +12,12 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.Photo.ChoosePhotoActivity;
 import com.efithealth.app.activity.FragmentHome;
 import com.efithealth.app.activity.MainActivity;
-import com.efithealth.app.activity.PublishActiviy;
 import com.efithealth.app.adapter.CoachListAdapter;
 import com.efithealth.app.javabean.CoachList;
 import com.efithealth.app.javabean.CoachListModel;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.view.refreshlistview.WaterDropListView;
@@ -28,15 +26,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -50,11 +44,8 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsListView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -242,7 +233,7 @@ public class FragmentCoachList extends BaseFragment implements
 				String nickname = list_adapter.get(position).getNickname();
 				String page = "?tarid=" + memid + "&role=coach"
 						+ "&tabpage=course&memid="
-						+ MyApplication.getInstance().getMemid();
+						+ App.getInstance().getMemid();
 				page += "&memphoto=" + imgsfile + "&memnickname=" + nickname;
 				if (page != null && page.length() > 0) {
 					SharedPreferencesUtils
@@ -387,10 +378,10 @@ public class FragmentCoachList extends BaseFragment implements
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("memid", MyApplication.getInstance().getMemid());
+				map.put("memid", App.getInstance().getMemid());
 				map.put("pageIndex", pageIndex);
-				map.put("latitude", MyApplication.getInstance().mLatitude + "");
-				map.put("longitude", MyApplication.getInstance().mLongitude
+				map.put("latitude", App.getInstance().mLatitude + "");
+				map.put("longitude", App.getInstance().mLongitude
 						+ "");
 				map.put("sorttytpe", sortType);
 				map.put("gender", gender);

@@ -16,9 +16,7 @@ package com.efithealth.app.activity;
 import image.Bimp;
 import image.FileUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONException;
@@ -28,16 +26,12 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.db.UserDao;
-import com.efithealth.app.domain.User;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.CommonUtils;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.ToastCommom;
-import com.efithealth.applib.controller.HXSDKHelper;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -52,7 +46,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -188,8 +181,8 @@ public class LoginActivity extends BaseActivity {
 	                		return;
 	                	}
 	                    // 登陆成功，保存用户名密码
-	                    MyApplication.getInstance().setUserName(memid);
-	                    MyApplication.getInstance().setPassword(passnum);
+	                    App.getInstance().setUserName(memid);
+	                    App.getInstance().setPassword(passnum);
 	                  /*  runOnUiThread(new Runnable() {
 	                        public void run() {
 	                            dialog.setMessage(getString(R.string.list_is_for));
@@ -216,7 +209,7 @@ public class LoginActivity extends BaseActivity {
 	                        runOnUiThread(new Runnable() {
 	                            public void run() {
 	                                dialog.dismiss();
-	                                MyApplication.getInstance().logout(true,null);
+	                                App.getInstance().logout(true,null);
 	                              //  ToastCommom.getInstance().ToastShow(LoginActivity.this, getString(R.string.login_failure_failed));
 	                            }
 	                        });
@@ -285,8 +278,8 @@ public class LoginActivity extends BaseActivity {
            
     };
 	public void updateData(){
-		MyApplication.getInstance().update_loacl_friend();
- 		MyApplication.getInstance().update_local_myinfo();
- 		MyApplication.getInstance().update_loacl_indexdata();
+		App.getInstance().update_loacl_friend();
+ 		App.getInstance().update_local_myinfo();
+ 		App.getInstance().update_loacl_indexdata();
 	}
 }

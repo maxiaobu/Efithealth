@@ -50,6 +50,7 @@ import com.easemob.EMEventListener;
 import com.easemob.EMGroupChangeListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.EMValueCallBack;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactListener;
@@ -64,7 +65,6 @@ import com.easemob.chat.EMMessage.Type;
 import com.easemob.chat.TextMessageBody;
 import com.efithealth.app.Constant;
 import com.efithealth.app.DemoHXSDKHelper;
-import com.efithealth.app.MyApplication;
 import com.efithealth.R;
 import com.efithealth.app.db.InviteMessgeDao;
 import com.efithealth.app.db.UserDao;
@@ -559,13 +559,13 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 	}
 
 	public String getPath() {
-		double jd = MyApplication.getInstance().mLongitude;
-		double wd = MyApplication.getInstance().mLatitude;
+		double jd = App.getInstance().mLongitude;
+		double wd = App.getInstance().mLatitude;
 		if (jd == 0.0 && wd == 0.0) {
 			jd = 123.43095;
 			wd = 41.811159;
 		}
-		String path = "?memid=" + MyApplication.getInstance().getMemid()
+		String path = "?memid=" + App.getInstance().getMemid()
 				+ "&longitude=" + jd + "&latitude=" + wd;
 		return path;
 	}
@@ -1224,7 +1224,7 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 	}
 
 	private void showWarning(){
-		MyApplication.getInstance().logout(true, new EMCallBack() {
+		App.getInstance().logout(true, new EMCallBack() {
 
 			@Override
 			public void onError(int arg0, String arg1) {
@@ -1254,7 +1254,7 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (MyApplication.getInstance().getMemid().equals("")) {
+		if (App.getInstance().getMemid().equals("")) {
 			AlertDialog.Builder builder=new Builder(MainActivity.this);
 			builder.setTitle("重要提示");
 			builder.setMessage("登录已经过期，请重新登录！");
@@ -1400,9 +1400,19 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 
 	}
 
+	// TODO: 2016/8/27 maxiaobu 我写的
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
+		if ((Intent.FLAG_ACTIVITY_CLEAR_TOP & intent.getFlags()) != 0) {
+			if (intent.getIntExtra("foodFlag",-1)==1){
+				Intent foodOrderIntent=new Intent();
+				foodOrderIntent.putExtra("orderFlag",2);
+				foodOrderIntent.setClass(MainActivity.this,OrderListActivity.class);
+				startActivity(foodOrderIntent);
+			}
+		}
+
 		if (getIntent().getBooleanExtra("conflict", false)
 				&& !isConflictDialogShow) {
 			showConflictDialog();
@@ -1432,7 +1442,7 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 				Toast.makeText(MainActivity.this, "再按一次退出羿健康",
 						Toast.LENGTH_SHORT).show();
 			} else {
-				MyApplication.getInstance().mLocationClient.stop();
+				App.getInstance().mLocationClient.stop();
 				finish();
 				System.exit(0);
 			}
@@ -1456,5 +1466,6 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 	}
 	
 	
+	/*--------------------------me___________________________*/
 
 }

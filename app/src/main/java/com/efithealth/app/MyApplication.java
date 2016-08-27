@@ -14,9 +14,7 @@
 package com.efithealth.app;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONArray;
@@ -26,12 +24,10 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.easemob.EMCallBack;
-import com.easemob.chat.EMGroupManager;
 import com.efithealth.R;
-import com.efithealth.app.activity.FragmentHome;
-import com.efithealth.app.activity.LoginActivity;
 import com.efithealth.app.domain.User;
 import com.efithealth.app.entity.MCourseList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.CircleDisplayer;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
@@ -52,13 +48,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.Application;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -306,9 +296,7 @@ public class MyApplication extends MultiDexApplication {
 		map.put("address", (String) SharedPreferencesUtils.getParam(instance, "address", ""));
 		map.put("headImgUrl", (String) SharedPreferencesUtils.getParam(instance, "headImgUrl", ""));
 		map.put("memrole", (String) SharedPreferencesUtils.getParam(instance, "memrole", "mem"));
-
 		return map;
-
 	}
 
 	/**
@@ -377,9 +365,9 @@ public class MyApplication extends MultiDexApplication {
 						SharedPreferencesUtils.setParam(getBaseContext(), "moreImgList", moreImglist);
 						SharedPreferencesUtils.setParam(getBaseContext(), "topidlist", topidlist);
 						SharedPreferencesUtils.setParam(getBaseContext(), "moreidlist", moreidlist);
-						Log.e("MyApplication", "照片墙信息更新成功");
+						Log.e("App", "照片墙信息更新成功");
 
-						Log.e("MyApplication", "个人信息更新成功");
+						Log.e("App", "个人信息更新成功");
 
 					} else {
 						ToastCommom.getInstance().ToastShow(getBaseContext(), "服务器连接不稳定！");
@@ -434,7 +422,7 @@ public class MyApplication extends MultiDexApplication {
 						SharedPreferencesUtils.setParam(getBaseContext(), "topidlist", topidlist);
 						SharedPreferencesUtils.setParam(getBaseContext(), "moreidlist", moreidlist);
 						
-						Log.e("MyApplication", "照片墙信息更新成功");
+						Log.e("App", "照片墙信息更新成功");
 					} else {
 						ToastCommom.getInstance().ToastShow(getBaseContext(), "服务器连接不稳定！");
 					}
@@ -487,7 +475,7 @@ public class MyApplication extends MultiDexApplication {
 
 							}
 							UserUtils.updateUserInfo(localUsers);
-							Log.e("MyApplication", "好友信息更新成功");
+							Log.e("App", "好友信息更新成功");
 						} else {
 							ToastCommom.getInstance().ToastShow(getBaseContext(), "服务器连接不稳定！");
 						}

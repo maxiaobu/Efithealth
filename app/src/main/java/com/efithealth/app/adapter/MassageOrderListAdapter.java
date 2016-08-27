@@ -14,17 +14,16 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.StringRequest;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.fragment.FragmentMassageDetails;
 import com.efithealth.app.fragment.FragmentMassageOrder;
 import com.efithealth.app.javabean.MassageOrderList;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.VolleySingleton;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -91,7 +90,7 @@ public class MassageOrderListAdapter extends BaseAdapter {
 		final MassageOrderList orderList = list.get(position);
 		ImageLoader.getInstance().displayImage(orderList.getImgsfilename(),
 				holder.iv_head,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 		holder.tv_massageName.setText(orderList.getMassagename());
 		holder.tv_money.setText(orderList.getOrdamt() + "元");
 		/*

@@ -1,20 +1,12 @@
 package com.efithealth.app.activity;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import com.efithealth.R;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.utils.CircleDisplayer;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.utils.QRCode;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -23,13 +15,10 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -91,14 +80,14 @@ public class QRCodeActivity extends BaseActivity {
 			String img = getIntent().getStringExtra("img");
 			String name = getIntent().getStringExtra("name");
 			ImageLoader.getInstance().displayImage(img, title_img,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			username.setText(name);
 		} else {
 			flag = true;
-			Map<String, String> map = MyApplication.getInstance().getMyInfo();
+			Map<String, String> map = App.getInstance().getMyInfo();
 			String head_imagePath = map.get("headImgUrl");
 			ImageLoader.getInstance().displayImage(head_imagePath, title_img,
-					MyApplication.getInstance().initHeadDisImgOption());
+					App.getInstance().initHeadDisImgOption());
 			username.setText(map.get("nickname"));
 		}
 		createImage();
@@ -114,7 +103,7 @@ public class QRCodeActivity extends BaseActivity {
 						"yyyy年MM月dd日HH:mm:ss");
 				Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
 				str = formatter.format(curDate);
-				memid = MyApplication.getInstance().getMemid();
+				memid = App.getInstance().getMemid();
 				
 				text = "{\"memid\":\"" + memid + "\",\"curDate\":\"" + str
 						+ "\"}";

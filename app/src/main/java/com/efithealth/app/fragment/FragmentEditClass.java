@@ -20,12 +20,10 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
 import com.efithealth.app.activity.MainActivity;
 import com.efithealth.app.utils.LoadDataFromServer;
 import com.efithealth.app.utils.SharedPreferencesUtils;
 import com.efithealth.app.utils.StringUtil;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.efithealth.app.utils.LoadDataFromServer.DataCallBack;
 
 /**
@@ -126,7 +124,7 @@ public class FragmentEditClass extends Fragment {
 
 				// ImageLoader.getInstance().displayImage(uri,
 				// iv_course_picture,
-				// MyApplication.getInstance().initPicDisImgOption());
+				// aaaMyApplication.getInstance().initPicDisImgOption());
 				et_course_name.setText("aaaaa");
 				et_course_number.setText("bbbbb");
 				et_course_time.setText("ccccc");

@@ -19,17 +19,12 @@ import java.util.Map;
 import uk.co.senab.photoview.image.ImagePagerActivity;
 
 import com.alibaba.fastjson.JSONObject;
-import com.easemob.chat.ImageMessageBody;
-import com.easemob.util.EMLog;
 import com.efithealth.R;
-import com.efithealth.R.integer;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
-import com.efithealth.app.Photo.ChoosePhotoActivity;
 import com.efithealth.app.Photo.ChoosePhotoActivity5;
 import com.efithealth.app.adapter.ImageAdapter;
-import com.efithealth.app.adapter.ImageWallAdapter;
 import com.efithealth.app.fragment.FragmentMe;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.SendMyInfoTask;
 import com.efithealth.app.task.SendMyInfoTask.DataCallBack;
 import com.efithealth.app.utils.SharedPreferencesUtils;
@@ -49,7 +44,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,7 +65,6 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -200,11 +193,11 @@ public class MyInfo extends BaseActivity {
 			}
 		});
 
-		Map<String, String> map = MyApplication.getInstance().getMyInfo();
+		Map<String, String> map = App.getInstance().getMyInfo();
 		head_imagePath = map.get("headImgUrl");
 
 		ImageLoader.getInstance().displayImage(head_imagePath, head_image,
-				MyApplication.getInstance().initHeadDisImgOption());
+				App.getInstance().initHeadDisImgOption());
 
 		kname = (EditText) findViewById(R.id.K_name);
 		kname.addTextChangedListener(new TextWatcher() {
@@ -295,7 +288,7 @@ public class MyInfo extends BaseActivity {
 	public void setTopImg() {
 		lists.clear();
 		listid.clear();
-		Map<String, String> map_top = MyApplication.getInstance()
+		Map<String, String> map_top = App.getInstance()
 				.getImgWallInfo();
 		String topImgList = map_top.get("topImgList");
 		String topidList = map_top.get("topidList");
@@ -656,7 +649,7 @@ public class MyInfo extends BaseActivity {
 		dialog.setMessage("正在保存中...");
 		dialog.show();
 		Map<String, String> content = new HashMap<String, String>();
-		content.put("memid", MyApplication.getInstance().getMemid());
+		content.put("memid", App.getInstance().getMemid());
 		content.put("nickname", kname.getText().toString());
 		content.put("signature", K_notes.getText().toString());
 		content.put("recaddress", K_address.getText().toString());
@@ -689,7 +682,7 @@ public class MyInfo extends BaseActivity {
 				if (code.equals("[\"1\",\"1\"]")) {
 					Log.i("flag", code.equals("[\"1\",\"1\"]") + "");
 					ToastCommom.getInstance().ToastShow(MyInfo.this, "修改成功");
-					MyApplication.getInstance().update_local_myinfo();
+					App.getInstance().update_local_myinfo();
 					MyInfo.this.setResult(11);
 					FragmentMy.flag_my = true;
 					FileUtils.deleteDir();

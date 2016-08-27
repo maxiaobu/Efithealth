@@ -8,7 +8,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 import com.efithealth.R;
 import com.efithealth.app.Constant;
-import com.efithealth.app.MyApplication;
+import com.efithealth.app.maxiaobu.base.App;
 import com.efithealth.app.task.SendMyInfoTask;
 import com.efithealth.app.task.SendMyInfoTask.DataCallBack;
 import com.efithealth.app.utils.ToastCommom;
@@ -65,7 +65,7 @@ public class RevampAddress extends Activity {
 	}
 
 	private void initData() {
-		map = MyApplication.getInstance().getMyInfo();
+		map = App.getInstance().getMyInfo();
 		K_nick.setText(map.get("addressname"));
 		K_phone.setText(map.get("addresphone"));
 		K_address.setText(map.get("address"));
@@ -74,7 +74,7 @@ public class RevampAddress extends Activity {
 
 	public void setTopImg() {
 		lists.clear();
-		Map<String, String> map_top = MyApplication.getInstance()
+		Map<String, String> map_top = App.getInstance()
 				.getImgWallInfo();
 		String topImgList = map_top.get("topImgList");
 		topidList = map_top.get("topidList");
@@ -97,7 +97,7 @@ public class RevampAddress extends Activity {
 		dialog.setMessage("正在保存中...");
 		dialog.show();
 		Map<String, String> content = new HashMap<String, String>();
-		content.put("memid", MyApplication.getInstance().getMemid());
+		content.put("memid", App.getInstance().getMemid());
 		content.put("nickname", map.get("nickname"));
 		content.put("signature", map.get("mysign"));
 		content.put("recaddress", K_address.getText().toString());
@@ -126,7 +126,7 @@ public class RevampAddress extends Activity {
 					Log.i("flag", code.equals("[\"1\",\"1\"]") + "");
 					ToastCommom.getInstance().ToastShow(RevampAddress.this,
 							"修改成功");
-					MyApplication.getInstance().update_local_myinfo();
+					App.getInstance().update_local_myinfo();
 					Intent intent=new Intent();
 					intent.putExtra("nick", K_nick.getText().toString());
 					intent.putExtra("phone", K_phone.getText().toString());

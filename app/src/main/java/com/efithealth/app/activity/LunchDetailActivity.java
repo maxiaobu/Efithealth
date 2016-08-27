@@ -112,7 +112,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
 
     }
 
-    private void initView() {
+    public void initView() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -129,7 +129,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
 
     }
 
-    private void initData() {
+    public void initData() {
         RequestParams params = new RequestParams("merid", mMerid);
         IRequest.post(this, Constant.URL_FOOD_DETAIL, params, new RequestListener() {
             @Override
