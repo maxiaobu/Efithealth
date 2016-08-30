@@ -157,6 +157,12 @@ public class Index {
      */
     public static final String URL_FOOD_ORDER_DETAIL=URL_BASE+"mselectForderByOrdno.do";
 
+    /**
+     * 查看配送详情
+     *
+     * http://192.168.1.121:8080/efithealth/mselectDelivery.do?ordno=FO-20160726-170
+     */
+    public static final String URL_FOOD_DISPATCH_DETAIL=URL_BASE+"mselectDelivery.do";
 
 /*-----URL_END   URL_END   URL_END   URL_END   URL_END   URL_END   URL_END   -------*/
 }

@@ -140,7 +140,11 @@ public class FoodOrderDetailActivity extends BaseAty implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_dispatch_detail:
-                startActivity(new Intent(this, DispatchDetailActivity.class));
+                Intent dispatch_intent = new Intent();
+                dispatch_intent.setClass(this, DispatchDetailActivity.class);
+                dispatch_intent.putExtra("ordno",String.valueOf(mOrdno));
+                startActivity(dispatch_intent);
+
                 break;
             case R.id.tv_again:
                 String merid = getIntent().getStringExtra("merid");

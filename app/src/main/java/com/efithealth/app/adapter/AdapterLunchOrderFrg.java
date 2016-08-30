@@ -15,6 +15,7 @@ import com.efithealth.R;
 import com.efithealth.app.activity.FoodOrderDetailActivity;
 import com.efithealth.app.activity.ModifyOrderAddressActivity;
 import com.efithealth.app.activity.PayActivity;
+import com.efithealth.app.fragment.LunchOrderFragment;
 import com.efithealth.app.javabean.BeanLunchOrderList;
 
 import java.util.List;
@@ -54,10 +55,12 @@ public class AdapterLunchOrderFrg extends RecyclerView.Adapter {
 
     private Activity mActivity;
     private List<BeanLunchOrderList.ForderListBean> mData;
+    private LunchOrderFragment fragment;
 
-    public AdapterLunchOrderFrg(Activity activity, List<BeanLunchOrderList.ForderListBean> mData) {
+    public AdapterLunchOrderFrg(Activity activity, List<BeanLunchOrderList.ForderListBean> mData, LunchOrderFragment fragment) {
         mActivity = activity;
         this.mData = mData;
+        this.fragment=fragment;
     }
 
     @Override
@@ -134,8 +137,9 @@ public class AdapterLunchOrderFrg extends RecyclerView.Adapter {
                         //修改地址
                         Intent intent = new Intent();
                         intent.putExtra("ordno",String.valueOf( mData.get(position).getOrdno()));
+                        intent.putExtra("recaddress",String.valueOf(mData.get(position).getRecaddress()));
                         intent.setClass(mActivity, ModifyOrderAddressActivity.class);
-                        mActivity.startActivity(intent);
+                        fragment.startActivityForResult(intent,2);
                     }
                 });
 
@@ -195,6 +199,7 @@ public class AdapterLunchOrderFrg extends RecyclerView.Adapter {
             ButterKnife.bind(this, itemView);
         }
     }
+
 
 
 }

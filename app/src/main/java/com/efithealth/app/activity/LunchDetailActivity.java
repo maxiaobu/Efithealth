@@ -179,6 +179,7 @@ public class LunchDetailActivity extends BaseAty implements AppBarLayout.OnOffse
                 break;
             case R.id.tv_add_cart:
                 // TODO: 2016/8/23 没写
+                startActivity(new Intent(this,TrainerPersionalActivity.class));
                 break;
             case R.id.tv_now_order:
                 if (mData!=null){

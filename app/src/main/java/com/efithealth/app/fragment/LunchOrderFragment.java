@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -94,6 +95,7 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
         return mRootView;
     }
 
+
     @Override
     public void initView() {
         mSwipeToLoadLayout.setOnRefreshListener(this);
@@ -102,7 +104,7 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mSwipeTarget.setLayoutManager(layoutManager);
         mSwipeTarget.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new AdapterLunchOrderFrg(getActivity(), mData);
+        mAdapter = new AdapterLunchOrderFrg(getActivity(), mData,this);
         mSwipeTarget.setAdapter(mAdapter);
         mAdapter.setOnCancelItemClickListener(new AdapterLunchOrderFrg.OnCancelItemClickListener() {
             @Override
@@ -270,6 +272,17 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        initData();
+    }
+
+    @Override
     public void onRefresh() {
         mCurrentPage = 1;
         mLoadType = 0;
@@ -293,5 +306,12 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
                 initData();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==2&&resultCode==2)
+            initData();
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

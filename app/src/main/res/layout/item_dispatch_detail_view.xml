@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sz_40"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/sz_20"
+        android:text="2016-01-01"
+        android:textColor="@color/colorTextThird"
+        android:textSize="@dimen/sz_16"/>
+
+    <TextView
+        android:id="@+id/tv_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/sz_50"
+        android:layout_toRightOf="@id/tv_date"
+        android:text="周一"
+        android:textColor="@color/colorTextThird"
+        android:textSize="@dimen/sz_16"/>
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/sz_20"
+        android:text="已配送"
+        android:textColor="@color/colorTextThird"
+        android:textSize="@dimen/sz_16"/>
+    <TextView
+        android:id="@+id/tv_lunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/sz_40"
+        android:layout_toLeftOf="@id/tv_state"
+        android:text="午餐"
+        android:textColor="@color/colorTextThird"
+        android:textSize="@dimen/sz_16"/>
+
+
+
+    <View
+        style="@style/GrayLine"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

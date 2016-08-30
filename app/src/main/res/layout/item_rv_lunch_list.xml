@@ -30,11 +30,13 @@
 
             <com.efithealth.app.maxiaobu.widget.TouchHighlightImageButton
                 android:id="@+id/iv_goods"
-                android:layout_width="@dimen/sz_100"
+                android:layout_width="@dimen/sz_140"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:layout_marginTop="@dimen/sz_10"
+                android:layout_marginBottom="@dimen/sz_10"
                 />
 
             <LinearLayout
@@ -93,7 +95,7 @@
                 android:src="@mipmap/jiantou_botton_default"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/sz_20"/>
+                android:layout_marginRight="@dimen/sz_10"/>
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
@@ -102,7 +104,7 @@
                 android:textSize="@dimen/sz_20"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/sz_24"
+                android:layout_marginRight="@dimen/sz_14"
                 android:layout_marginBottom="@dimen/sz_2"/>
 
         </RelativeLayout>
