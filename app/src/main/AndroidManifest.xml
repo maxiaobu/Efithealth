@@ -94,17 +94,6 @@
             android:theme="@style/horizontal_slide">
         </activity>
 
-        <!-- 开屏页 -->
-        <activity
-            android:name=".app.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
         <!-- 登陆 -->
         <activity
             android:name=".app.activity.LoginActivity"
@@ -619,6 +608,17 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="3ecea51f560650b1ed8a4b99808f52e8"/>
 
+        <!-- 开屏页 -->
+        <activity
+            android:name=".app.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".app.activity.LunchListActivity"
             android:screenOrientation="portrait"
@@ -651,9 +651,14 @@
             android:name=".app.activity.DispatchDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".app.activity.TrainerPersionalActivity"
+        <activity
+            android:name=".app.activity.TrainerPersionalActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".app.activity.GuideActivity"
                   android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+                  android:theme="@style/AppTheme.NoActionBar"
+        />
     </application>
 
 </manifest>

@@ -174,6 +174,7 @@ public class RegisterActivity extends BaseActivity {
 		}
 	}
 
+	// TODO: 2016/8/31 倒计时
 	class TimeCount extends CountDownTimer {
 		public TimeCount(long millisInFuture, long countDownInterval) {
 			super(millisInFuture, countDownInterval);

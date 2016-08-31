@@ -14,16 +14,12 @@
 
 package com.efithealth.app.activity;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 

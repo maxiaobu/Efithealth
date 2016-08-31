@@ -84,7 +84,7 @@ public class App extends MultiDexApplication {
     /**
      * 环信功能类
      */
-    public static DemoHXSDKHelper hxSDKHelper = new DemoHXSDKHelper();
+    public  DemoHXSDKHelper hxSDKHelper = new DemoHXSDKHelper();
     /**
      * 纬度
      */
@@ -106,12 +106,11 @@ public class App extends MultiDexApplication {
 
 /*上面old  上面old  上面old  上面old  上面old  上面old  上面old  上面old  */
         instance = this;
-        hxSDKHelper.onInit(applicationContext);
+        hxSDKHelper.onInit(instance);
         mLocationClient = new LocationClient(instance); // 声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         setLocationOption();
         mLocationClient.start();
-
     }
 
 //// 百度MAP///////////////////////////////////////////////////////////////////////
